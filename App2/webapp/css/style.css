@@ -1,0 +1,98 @@
+.sapMNavItem.sapUiView.sapUiXMLView {
+	background-color: #3D375C 
+} 
+
+.sapMNavItem, .sapMNavItem.sapMPage {
+	background-color: #3D375C;
+}
+
+.sapUiFormResGrid>.sapUiFormTitle {
+	color : beige !important
+} 
+.sapMBarContainer.sapMBarPH{
+	background-color: white
+}
+.sapMBtnDefault.sapMBtnInner.sapMBtnText.sapMFocusable{
+	background-color:#D9E0E2;
+	color:black;
+}
+/* .sapMIBar-CTX.sapMFooter-CTX{
+	background-color: transparent;
+	border-top:"";
+} */
+#__toolbar0{
+	background-color: transparent;
+	border-top: transparent;
+	border-bottom: transparent;
+}
+.sapUiFormResGrid.sapUiFormBackgrTranslucent>div{
+	background-color: transparent !important;
+}
+.sapUiFormTitle.sapUiFormTitleH4{
+	border: transparent;
+}
+.sapMBarContainer.sapMBarPH{
+	height: initial;
+}
+.sapUiForm.sapUiFormEdit .sapUiFormElementLbl>.sapMLabel{
+	color:white;
+}
+.sapMIBar.sapMHeader-CTX{
+	background-color: white !important;
+	background : white !important;
+	height: 4.5rem;
+}
+/*header#__bar1{
+	background-color: white !important;
+	height : 4rem !important
+}
+header#__bar0{
+	background-color: white !important;
+	height : 4rem !important
+} */
+.sapMPageHeader::before{
+	border-top: 0.25rem;
+}
+.sapMPageHeader{
+	border-top: 0.25rem !important;
+}
+#__button6{
+ 	height: inherit ;	
+}
+.sapMListHdr{
+	color : white !important;
+}
+.sapMPanelHdr{
+	color: white !important;
+}
+/* App 2 result page */
+.sapMPanel>.sapMPanelHdr, .sapMPanelWrappingDiv, .sapMPanelWrappingDivTb
+.header.sapMPanelWrappingDiv.sapMPanelWrappingDivExpanded{
+	border-bottom : transparent ;
+}
+.sapMPanelWrappingDiv{
+	border-botton : transparent;
+}
+.sapMLnk.sapMLnkMaxWidth{
+	color: white !important;
+}
+.sapMPanelBGTranslucent.sapMPanelContent.sapMPanelExpandablePart{
+	background-color: transparent;
+	border-bottom : transparent;
+}
+.sapMPanelWrappingDivTb{
+	border-bottom: transparent !important;
+}
+.sapMBarChild.sapMLabel.sapMLabelMaxWidth.sapMLabelTBHeader.sapUiSelectable.sapMTBShrinkItem{
+	color : white ;
+}
+.sapMBarChild.sapMTitle.sapMTitleMaxWidth.sapMTitleNoWrap.sapMTitleStyleAuto.sapMTitleTB.sapUiSelectable.sapMTBShrinkItem{
+	color: white;
+}
+
+.sapMBtnInner.sapMBtnText{
+	color : 
+}
+.sapMPanelExpandableIcon{
+	transform: translateY(-50%) rotate(90deg) !important;
+}

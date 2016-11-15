@@ -1,0 +1,313 @@
+{
+	"results": [{
+		"empName": "John Smith",
+		"empDesc": "Director Sales",
+		"empPic": "images/Image_Lou.jpg",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Jane Smith",
+		"empDesc": "Director of Community Resources",
+		"empPic": "",
+		"location": "Texas",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Sherlock Holmes",
+		"empDesc": "Consultant Detective",
+		"empPic": "",
+		"location": "Fort Worth",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Harvey Specter",
+		"empDesc": "Attorney",
+		"empPic": "",
+		"location": "Texas",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Sheldon Cooper",
+		"empDesc": "Physicist",
+		"empPic": "",
+		"location": "Dallas",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Mike Ross",
+		"empDesc": "Assistant Attorney",
+		"empPic": "",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "John Watson",
+		"empDesc": "Army Doctor",
+		"empPic": "",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Gregory Lestrad",
+		"empDesc": "Inspector",
+		"empPic": "",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Jessica Pearson",
+		"empDesc": "General Counsel",
+		"empPic": "",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}, {
+		"empName": "Angelina Jolie",
+		"empDesc": "Chief Entertainment Officer",
+		"empPic": "",
+		"location": "San_Diego_CA",
+		"group": "Corporate",
+		"business": "Finance"
+	}],
+	"locations": [{
+		"location": "Washington",
+		"state": "DC",
+		"key": "washington_dc"
+	}, {
+		"location": "Stamford/Hartford",
+		"state": "CT",
+		"key": "stamford_hartford_ct"
+	}, {
+		"location": "San Jose",
+		"state": "CA",
+		"key": "San_Jose_CA"
+	}, {
+		"location": "San Diego",
+		"state": "CA",
+		"key": "San_Diego_CA"
+	}, {
+		"location": "Remote Users",
+		"state": "",
+		"key": "remote_users"
+	}, {
+		"location": "London",
+		"state": "UK",
+		"key": "london_uk"
+	}, {
+		"location": "Hialeah/Miramar",
+		"state": "FL",
+		"key": "hialeah_miramar_fl"
+	}, {
+		"location": "Englewood Cliffs",
+		"state": "NJ",
+		"key": "englewood_cliffs_nj"
+	}, {
+		"location": "Dallas/Ft.Worth",
+		"state": "TX",
+		"key": "dallas_ft_worth_tx"
+	}, {
+		"location": "Los Angeles",
+		"state": "CA",
+		"key": "los_angeles_ca"
+	}, {
+		"location": "New York",
+		"state": "NY",
+		"key": "new_york_ny"
+	}, {
+		"location": "Philadelphia",
+		"state": "PA",
+		"key": "philadelphia_pa"
+	}, {
+		"location": "Other Int'l Locations",
+		"state": "",
+		"key": "other_inter_locs"
+	}, {
+		"location": "Orlando",
+		"state": "FL",
+		"key": "orlando_fl"
+	}, {
+		"location": "Chicago",
+		"state": "IL",
+		"key": "chicago_il"
+	}],
+	"groups": [{
+		"group": "Corporate",
+		"businesses": [{
+			"business": "Finance"
+		}, {
+			"business": "International"
+		}, {
+			"business": "NBCUniversal Corporate News"
+		}, {
+			"business": "NBC Entertainment"
+		}, {
+			"business": "NBCUniversal Media Labs"
+		}, {
+			"business": "NBCUniversal Telemundo Enterprises"
+		}, {
+			"business": "News Policies & Legal Toolkit"
+		}, {
+			"business": "Sourcing/Procurement"
+		}, {
+			"business": "Talent Lab"
+		}, {
+			"business": "Universal Filmed Entertainment"
+		}]
+	}, {
+		"group": "Broadcast",
+		"businesses": [{
+			"business": "NBC Primetime"
+		}, {
+			"business": "NBC News"
+		}, {
+			"business": "NBC Olympics"
+		}, {
+			"business": "NBC Sports"
+		}, {
+			"business": "Telemundo"
+		}]
+	}, {
+		"group": "Local Media",
+		"businesses": [{
+			"business": "Cozi TV"
+		}, {
+			"business": "NBC Sports Regional Networks"
+		}, {
+			"business": "NBC Universal Owned Television Stations"
+		}, {
+			"business": "TeleXitos"
+		}]
+	}, {
+		"group": "Cable",
+		"businesses": [{
+			"business": "Bravo Media"
+		}, {
+			"business": "Chiller"
+		}, {
+			"business": "Cloo"
+		}, {
+			"business": "CNBC"
+		}, {
+			"business": "E! Entertainment"
+		}, {
+			"business": "Esquire Network"
+		}, {
+			"business": "Golf Channel"
+		}, {
+			"business": "MSNBC"
+		}, {
+			"business": "NBC Sports Network (NBCSN)"
+		}, {
+			"business": "NBC Universo"
+		}, {
+			"business": "Oxygen Media"
+		}, {
+			"business": "Sprout"
+		}, {
+			"business": "Syfy"
+		}, {
+			"business": "USA Network"
+		}]
+	}, {
+		"group": "Digital Media",
+		"businesses": [{
+			"business": "Fandango"
+		}, {
+			"business": "GolfNow"
+		}, {
+			"business": "Seeso"
+		}]
+	}, {
+		"group": "Film (Universal Filmed Entertainment)",
+		"businesses": [{
+			"business": "Focus Features"
+		}, {
+			"business": "DreamWorks Animation"
+		}, {
+			"business": "Universal Pictures"
+		}, {
+			"business": "Universal Pictures Home Entertainment"
+		}]
+	}, {
+		"group": "International",
+		"businesses": [{
+			"business": "13th Street"
+		}, {
+			"business": "Carnival"
+		}, {
+			"business": "Chocolate"
+		}, {
+			"business": "CNBC International"
+		}, {
+			"business": "Diva Universal"
+		}, {
+			"business": "E! International"
+		}, {
+			"business": "Focus Features International"
+		}, {
+			"business": "Kidsco"
+		}, {
+			"business": "Lark"
+		}, {
+			"business": "Lucky Giant"
+		}, {
+			"business": "Matchbox"
+		}, {
+			"business": "mCloud"
+		}, {
+			"business": "NBCUniversal International Television"
+		}, {
+			"business": "Picture Box Movies"
+		}, {
+			"business": "Studio Universal"
+		}, {
+			"business": "Sigh International"
+		}, {
+			"business": "Telemundo Internaclonal"
+		}, {
+			"business": "Universal Channel"
+		}, {
+			"business": "Universal Japan"
+		}, {
+			"business": "Universal Pictures International"
+		}]
+	}, {
+		"group": "Operations & Technical Services",
+		"businesses": [{
+			"business": "Business Services/Global Real Estate"
+		}, {
+			"business": "Mobile Services"
+		}, {
+			"business": "O&TS Home"
+		}, {
+			"business": "Operations"
+		}, {
+			"business": "Smart Bar"
+		}, {
+			"business": "Technology"
+		}, {
+			"business": "TechnologySAFE"
+		}]
+	}, {
+		"group": "Studio & Distribution",
+		"businesses": [{
+			"business": "Telemundo Studios"
+		}, {
+			"business": "Universal Cable Productions"
+		}, {
+			"business": "Universal Television"
+		}]
+	}, {
+		"group": "Universal Parks & Resorts",
+		"businesses": [{
+			"business": "Universal Orlando Resort"
+		}, {
+			"business": "Universal Studios Hollywood"
+		}, {
+			"business": "Universal Studios Japan"
+		}, {
+			"business": "Universal Studios Singapore"
+		}]
+	}]
+}

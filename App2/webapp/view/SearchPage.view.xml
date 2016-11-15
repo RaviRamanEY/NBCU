@@ -1,0 +1,180 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"  xmlns:f="sap.ui.layout.form"
+			xmlns:l="sap.ui.layout" id="idSearchPage"
+		controllerName="com.nbcu.controller.SearchPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title">		
+		<customHeader>
+			<Bar>
+				<contentMiddle>			
+						<Image src="images/nbcu.png"></Image>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>	
+			<Text width="20%"></Text>
+			<f:SimpleForm id="SimpleFormChange354" layout="ResponsiveGridLayout"			
+			minWidth="1024"
+			maxContainerCols="2"
+			editable="true"			
+			title=""
+			labelSpanL="2"
+			labelSpanM="2"		
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="2"
+			columnsM="2"
+			class="editableForm">
+			
+			<l:Grid 
+					defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					hSpacing="1"
+				 	columnsL="2"
+				 	columnsM="2"
+				 	minContainerCols="2"
+				 	columnsS="2" >		
+					<SearchField id="searchField"  width="100%" search="onSearch">
+					<layoutData>
+  					    <l:GridData span="L10 M10 S10"/>
+   					 </layoutData>
+					</SearchField>			
+						<Button icon="sap-icon://refresh" width="20%" press="resetSearch">
+						<layoutData>
+    				  <l:GridData span="L2 M2 S2"/>
+    					</layoutData>
+						</Button>			
+			</l:Grid>
+			</f:SimpleForm>
+		<Panel id="panel" expandable="true" expanded="false" visible="false" headerText="Filters" width="auto" class="sapUiResponsiveMargin">
+		<content>
+			<Label text="Location" design="Bold" textAlign="center" class="sapUiTinyMarginBegin"></Label>
+			<l:Grid 
+					defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					hSpacing="1"
+				 	columnsL="2"
+				 	columnsM="2"
+				 	minContainerCols="2"
+				 	columnsS="2" >		
+					<ComboBox width="100%" id="cmbBox"
+					items="{
+						path:'/locations'
+					}">
+					
+					<core:Item text="{location}" key="{key}" />	
+					<layoutData>
+  					    <l:GridData span="L10 M10 S10"/>
+   					 </layoutData>
+					</ComboBox>			
+						<Button icon="sap-icon://refresh"  press="resetLoc" width="20%" >
+						<layoutData>
+    				  <l:GridData span="L2 M2 S2"/>
+    					</layoutData>
+						</Button>			
+			</l:Grid>
+		
+			
+			<Label text="Group" design="Bold" class="sapUiTinyMarginBegin"></Label>
+	
+			<l:Grid 
+					defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					hSpacing="1"
+				 	columnsL="2"
+				 	columnsM="2"
+				 	minContainerCols="2"
+				 	columnsS="2" >		
+					<ComboBox width="100%"
+					id="groupsCB"
+					selectionChange="onItemSelect"
+					items="{
+						path: '/groups'
+					
+					}">
+					<core:Item key="{group}" text="{group}" />	
+					<layoutData>
+  					    <l:GridData span="L10 M10 S10"/>
+   					 </layoutData>
+					</ComboBox>			
+						<Button icon="sap-icon://refresh" width="20%" press="resetGroup" >
+						<layoutData>
+    				  <l:GridData span="L2 M2 S2"/>
+    					</layoutData>
+						</Button>			
+			</l:Grid>
+		
+			<Label text="Business" design="Bold" class="sapUiTinyMarginBegin"></Label>
+			<l:Grid 
+					defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					vSpacing="0"
+					hSpacing="1"
+				 	columnsL="2"
+				 	columnsM="2"
+				 	minContainerCols="2"
+				 	columnsS="2" >		
+					<ComboBox width="100%"
+					id="businessListItem">
+					
+				
+					<layoutData>
+  					    <l:GridData span="L10 M10 S10"/>
+   					 </layoutData>
+					</ComboBox>			
+						<Button icon="sap-icon://refresh" width="20%" press="resetBusiness" >
+						<layoutData>
+    				  <l:GridData span="L2 M2 S2"/>
+    					</layoutData>
+						</Button>			
+			</l:Grid>
+			<FlexBox><Label></Label></FlexBox>    
+			<Text height="9%" text=" "></Text>
+			<Button text="Apply" width="100%" press="updateResults" type="Emphasized"></Button>
+			<Button text="Cancel" width="100%" press="cancel" type="Emphasized"></Button>
+			</content>
+			</Panel>
+			
+			
+			
+			<List id="searchResult"
+				visible="false"
+				items="{/results}"
+				headerText="Employee Details">
+			<items>
+				<ObjectListItem
+					title="{empName}"
+					type="Active"
+					press="onListItemPress"
+					number="{
+						path:'location'
+						
+					}"
+					numberUnit="{CurrencyCode}">
+					<!-- <firstStatus>
+						<ObjectStatus
+							text="{empDesc}"
+							state="{
+									path: 'Status',
+								formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
+							}" />
+					</firstStatus> -->
+					<attributes>
+					
+						<ObjectAttribute text="{empDesc}" />
+						<ObjectAttribute text="{business}" />
+							<ObjectAttribute text="{group}" />
+					</attributes>
+				</ObjectListItem>
+			</items>
+		</List>
+		
+		</content>
+	</Page>
+</core:View>
