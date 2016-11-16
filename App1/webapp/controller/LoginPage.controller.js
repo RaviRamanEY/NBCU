@@ -1,22 +1,24 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function(Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/m/MessageToast"
+], function(Controller, MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.nbcu.controller.LoginPage", {
-		submit : function(){
-			var inp= this.getView().byId("input").getValue();
-			var pwd= this.getView().byId("password").getValue();
+		submit: function(){
+			var inp = this.getView().byId("input").getValue();
+			var pwd = this.getView().byId("password").getValue();
 			
-			if(inp=="user" && pwd=="password"){
-				sap.m.MessageToast.show("Login Successful");
-				//add url later
+			if(inp === "user" && pwd === "password") {
 				window.open("http://www.nbcuniversal.com/","_self");
-			}else{
-				sap.m.MessageToast.show("Please check your SSO id and Password");
+			} else {
+				MessageToast.show("Please check your SSO id and Password", {
+					duration: 5000
+				});
 			}
 		},
-		reset : function(){
+		
+		reset: function(){
 			this.getView().byId("input").setValue("");
 			this.getView().byId("password").setValue("");
 		}
