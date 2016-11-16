@@ -1,3 +1,39 @@
+.linkHome .linkHome1 .sapMLink {
+	color: rgb(141, 141, 141) !important;
+	font-size: 12px !important;
+	font-family: serif !important;
+}
+
+.footer {
+	background-color: #000 !important;
+}
+
+.nbcuHome {
+	color: rgb(141, 141, 141) !important;
+	font-size: 28px !important;
+	font-family: initial !important;
+	font-weight: bold;
+}
+
+.copyrightLabel .sapMIBar-CTX.sapMFooter-CTX .sapMLabel {
+	color: rgb(141, 141, 141) !important;
+	font-size: 10px !important;
+	font-family: verdana !important;
+}
+
+.filterLabelHeading {
+	color: white;
+}
+
+.filterButton .sapMBtnTransparent .sapMBtnInner {
+	color: rgb(141, 141, 141) !important;
+	font-size: 20px !important;
+}
+
+.sapMTB {
+	border: none !important;
+}
+
 .sapMNavItem.sapUiView.sapUiXMLView {
 	background-color: #3D375C 
 } 
@@ -95,4 +131,11 @@ header#__bar0{
 }
 .sapMPanelExpandableIcon{
 	transform: translateY(-50%) rotate(90deg) !important;
+}
+
+#__label1{
+	font-size: xx-large;
+}
+.linkHome{
+	color: white;
 }

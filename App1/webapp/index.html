@@ -3,8 +3,9 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta http-equiv='Content-Type' content='text/html;charset=UTF-8'/>		
+		
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-			<!-- online source  "resources/sap-ui-core.js"  -->
+		
 		<script id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
 			data-sap-ui-libs="sap.m"
@@ -13,36 +14,21 @@
 			data-sap-ui-resourceroots='{"com.nbcu": ""}'>
 		</script>
 		
-	
-		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
-
 		<script>
-		        if(navigator.onLine){
-					/*
-					var app = new sap.m.App({id : "app", initialPage:"idLoginPage1"});
-				 	
-				 	var page = sap.ui.view({id:"idLoginPage1", viewName:"com.nbcu.view.LoginPage", type:sap.ui.core.mvc.ViewType.XML});
-					app.addPage(page);
-					
-					var searchPage = sap.ui.view({id:"idSearchPage", viewName:"com.nbcu.view.SearchPage", type:sap.ui.core.mvc.ViewType.XML});
-					app.addPage(searchPage);
-					
-					app.placeAt("content");
-					*/
-					
-					sap.ui.getCore().attachInit(function() {
-						new sap.m.Shell({
-							app: new sap.ui.core.ComponentContainer({
-								height : "100%",
-								name : "com.nbcu"
-							})
-						}).placeAt("content");
-					});
-		        }else{
-		        	 $(function(){
-		        	      $("#content").load("offline.html"); 
-		        	 });
-		        }
+	        if(navigator.onLine) {			
+				sap.ui.getCore().attachInit(function() {
+					new sap.m.Shell({
+						app: new sap.ui.core.ComponentContainer({
+							height : "100%",
+							name : "com.nbcu"
+						})
+					}).placeAt("content");
+				});
+	        } else {
+	        	 $(function(){
+	        	      $("#content").load("offline.html"); 
+	        	 });
+	        }
 		</script>
 	</head>
 	<body class="sapUiBody" role="application">

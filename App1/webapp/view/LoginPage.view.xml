@@ -1,72 +1,106 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-		xmlns:f="sap.ui.layout.form"
-		xmlns:l="sap.ui.layout"
-		controllerName="com.nbcu.controller.LoginPage" xmlns:html="http://www.w3.org/1999/xhtml">
-	<App>
-	<Page title="title" showHeader="true">
-	<customHeader>
-		<Bar>
-			<contentMiddle>			
-					<Image src="images/nbcu.png"></Image>
-			</contentMiddle>
-		</Bar>
-	</customHeader>	
-	<content>
-			<Text ></Text>		
-			<VBox class="sapUiSmallMargin">
-			<f:SimpleForm id="SimpleFormChange354"
-			minWidth="1024"
-			maxContainerCols="2"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			title="Login to NBCU Now !"
-			labelSpanL="3"
-			labelSpanM="3"
-			emptySpanL="4"
-			emptySpanM="4"
-			columnsL="1"
-			columnsM="1"
-			class="editableForm">
-			<Input id="input" value= "" placeholder="Enter your SSO ID"></Input>		
-			<Input id="password" value= "" type="Password" placeholder="Enter your password"></Input>
-			<Link text="Forgot your Password?"
-						href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
-			</f:SimpleForm>
-			</VBox>
-			<VBox max-height="25%">				
-			</VBox>
-			
-			<Toolbar>   
-				<CheckBox></CheckBox>
-					<Label text="Remember my Id"></Label>
-				<ToolbarSpacer/>
-					<Button   icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%"></Button>			
-				</Toolbar>		
-			<VBox height="5%">				
-			</VBox>
-			<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
-			<headerToolbar>
-				<Toolbar>
-					<Title text="Links" />					
-				</Toolbar>
-			</headerToolbar>
-			<content>
-					<l:VerticalLayout class="sapUiSmallMargin" >
-					<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp"></Link>
-					</l:VerticalLayout>
-			
-			</content>
-		</Panel>
-			
-         </content>
- 	<footer>
- 		
- 		<Toolbar>
- 			<ToolbarSpacer/>
- 				<Label text="2016 Copyright NBCUniversal"></Label>	
- 			<ToolbarSpacer/>	
- 		</Toolbar>
-	</footer>
-	</Page>
+<mvc:View 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	controllerName="com.nbcu.controller.LoginPage"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<App id="app2">
+		<pages>
+			<Page title="Login Page" showHeader="true" id="loginPage">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<!-- To be replaced with new image file -->
+							<Image src="images/nbcu.png"></Image>
+						</contentMiddle>
+					</Bar>
+				</customHeader>	
+				<content>
+					<VBox class="sapUiSmallMargin">
+						<f:SimpleForm id="SimpleFormChange"
+							minWidth="1024"
+							maxContainerCols="2"
+							editable="true"
+							layout="ResponsiveGridLayout"
+							title="Login to NBCU Now !"
+							labelSpanL="3"
+							labelSpanM="3"
+							emptySpanL="4"
+							emptySpanM="4"
+							columnsL="1"
+							columnsM="1"
+							class="editableForm">
+						
+							<Input id="input" value="user" placeholder="Enter your SSO ID"></Input>		
+							<Input id="password" value="password" type="Password" placeholder="Enter your password" submit="submit"/>
+							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
+						</f:SimpleForm>
+					</VBox>
+					<Toolbar>   
+						<CheckBox id="" select="onRememberMe"></CheckBox>
+						<Label text="Remember my Id"></Label>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
+					</Toolbar>
+					<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Links" />			
+							</Toolbar>
+						</headerToolbar>
+						<content>
+								<l:VerticalLayout>
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" />
+								</l:VerticalLayout>
+						</content>
+					</Panel>
+				</content>
+			 	<footer>
+		 			<Toolbar height="30%" class="footer">
+		 				<l:VerticalLayout width="100%">
+ 							<Label text="NBCUniversal" class="nbcuHome sapUiSmallMarginBegin sapUiSmallMarginBottom sapUiSmallMarginTop" />
+ 							
+ 							<l:Grid class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+							defaultSpan="L12 M12 S12" 
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							hSpacing="0.5"
+						 	columnsL="3"
+						 	columnsM="3"
+						 	minContainerCols="3"
+						 	columnsS="3">		
+							
+							<Link class="linkHome linkHome1 sapMLink" text="CONTACT US" href="">
+								<layoutData>
+		  					    	<l:GridData span="L4 M4 S4"/>
+		   					 	</layoutData>
+		   					 </Link>								
+
+ 							<Link class="linkHome" text="STORE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L2 M2 S2"/>
+		   					 	</layoutData>	 							
+ 							</Link>
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="">
+								<layoutData>
+		  					    	<l:GridData span="L5 M5 S5"/>
+		   					 	</layoutData>
+			 				</Link>
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L6 M6 S6"/>
+		   					 	</layoutData>
+			 				</Link>
+						</l:Grid>
+			 				<Label text="2016 Copyright NBCUniversal" id="copyrightLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+			 			</l:VerticalLayout>
+		 			</Toolbar>
+				</footer>
+			</Page>
+		</pages>
 	</App>
 </mvc:View>

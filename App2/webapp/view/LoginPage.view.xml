@@ -1,99 +1,197 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
-		xmlns:f="sap.ui.layout.form"
-		xmlns:l="sap.ui.layout"
-		controllerName="com.nbcu.controller.LoginPage" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout"
+	controllerName="com.nbcu.controller.LoginPage" 
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
 	<App id="app2">
 		<pages>
-		<Page title="Login Page" showHeader="true" id="page1">
-			<customHeader>
-				<Bar>
-					<contentMiddle>			
+			<Page title="Login Page" showHeader="true" id="loginPage">
+				<customHeader>
+					<Bar>
+						<contentMiddle>
+							<!-- To be replaced with new image file -->
 							<Image src="images/nbcu.png"></Image>
-					</contentMiddle>
-				</Bar>
-			</customHeader>	
-			<content>
-					<Text ></Text>
+						</contentMiddle>
+					</Bar>
+				</customHeader>	
+				<content>
 					<VBox class="sapUiSmallMargin">
-					<f:SimpleForm id="SimpleFormChange"
-					minWidth="1024"
-					maxContainerCols="2"
-					editable="true"
-					layout="ResponsiveGridLayout"
-					title="Login to NBCU Now !"
-					labelSpanL="3"
-					labelSpanM="3"
-					emptySpanL="4"
-					emptySpanM="4"
-					columnsL="1"
-					columnsM="1"
-					class="editableForm">
-					<Input id="input" value= "" placeholder="Enter your SSO ID"></Input>		
-					<Input id="password" value= "" type="Password" placeholder="Enter your password"></Input>
-					<Link text="Forgot your Password?"
-								href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
-					</f:SimpleForm>
+						<f:SimpleForm id="SimpleFormChange"
+							minWidth="1024"
+							maxContainerCols="2"
+							editable="true"
+							layout="ResponsiveGridLayout"
+							title="Login to NBCU Now !"
+							labelSpanL="3"
+							labelSpanM="3"
+							emptySpanL="4"
+							emptySpanM="4"
+							columnsL="1"
+							columnsM="1"
+							class="editableForm">
+						
+							<Input id="input" value="user" placeholder="Enter your SSO ID"></Input>		
+							<Input id="password" value="password" type="Password" placeholder="Enter your password" submit="submit"/>
+							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
+						</f:SimpleForm>
 					</VBox>
-					<VBox max-height="25%">				
-					</VBox>
-					
 					<Toolbar>   
-						<CheckBox></CheckBox>
-							<Label text="Remember my Id"></Label>
+						<CheckBox id="" select="onRememberMe"></CheckBox>
+						<Label text="Remember my Id"></Label>
 						<ToolbarSpacer/>
-							<Button   icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%"></Button>			
-						</Toolbar>		
-					<VBox height="5%">				
-					</VBox>
+						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
+					</Toolbar>
 					<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
-					<headerToolbar>
-						<Toolbar>
-							<Title text="Links" />					
-						</Toolbar>
-					</headerToolbar>
-					<content>
-							<l:VerticalLayout class="sapUiSmallMargin" >
-							<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp"></Link>
-							</l:VerticalLayout>
-					
-					</content>
-				</Panel>
-					
-		         </content>
-		 	<footer>
-		 		
-		 		<Toolbar>
-		 			<ToolbarSpacer/>
-		 				<Label text="2016 Copyright NBCUniversal"></Label>	
-		 			<ToolbarSpacer/>	
-		 		</Toolbar>
-			</footer>  
-		</Page>
-		<Page title="Search Page" id="page2">		
-			<customHeader>
-				<Bar>
-					<contentMiddle>			
-							<Image src="images/nbcu.png"></Image>
-					</contentMiddle>
-				</Bar>
-			</customHeader>
-			<content>	
-				<Text width="20%"></Text>
-				<f:SimpleForm id="SimpleFormChange354" layout="ResponsiveGridLayout"			
-				minWidth="1024"
-				maxContainerCols="2"
-				editable="true"			
-				title=""
-				labelSpanL="2"
-				labelSpanM="2"		
-				emptySpanL="0"
-				emptySpanM="0"
-				columnsL="2"
-				columnsM="2"
-				class="editableForm">
-				
-				<l:Grid 
-						defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Links" />			
+							</Toolbar>
+						</headerToolbar>
+						<content>
+								<l:VerticalLayout>
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" />
+								</l:VerticalLayout>
+						</content>
+					</Panel>
+				</content>
+			 	<footer>
+		 			<Toolbar height="30%" class="footer">
+		 				<l:VerticalLayout width="100%">
+ 							<Label text="NBCUniversal" class="nbcuHome sapUiSmallMarginBegin sapUiSmallMarginBottom sapUiSmallMarginTop" />
+ 							
+ 							<l:Grid class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+							defaultSpan="L12 M12 S12" 
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							hSpacing="0.5"
+						 	columnsL="3"
+						 	columnsM="3"
+						 	minContainerCols="3"
+						 	columnsS="3">		
+							
+							<Link class="linkHome linkHome1 sapMLink" text="CONTACT US" href="">
+								<layoutData>
+		  					    	<l:GridData span="L4 M4 S4"/>
+		   					 	</layoutData>
+		   					 </Link>								
+
+ 							<Link class="linkHome" text="STORE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L2 M2 S2"/>
+		   					 	</layoutData>	 							
+ 							</Link>
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="">
+								<layoutData>
+		  					    	<l:GridData span="L5 M5 S5"/>
+		   					 	</layoutData>
+			 				</Link>
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L6 M6 S6"/>
+		   					 	</layoutData>
+			 				</Link>
+						</l:Grid>
+			 				<Label text="2016 Copyright NBCUniversal" id="copyrightLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+			 			</l:VerticalLayout>
+		 			</Toolbar>
+				</footer>
+			</Page>
+			<Page title="Search Page" id="searchPage">		
+				<customHeader>
+					<Bar>
+						<contentMiddle>			
+							<Image src="images/nbcu.png" />
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+				<content>	
+					<Text width="20%"></Text>
+					<f:SimpleForm id="SimpleFormChange354" 
+						layout="ResponsiveGridLayout"			
+						minWidth="1024"
+						maxContainerCols="2"
+						editable="true"			
+						title=""
+						labelSpanL="2"
+						labelSpanM="2"		
+						emptySpanL="0"
+						emptySpanM="0"
+						columnsL="2"
+						columnsM="2"
+						class="editableForm">
+						
+						<l:Grid class="sapUiSmallMarginTop"
+							defaultSpan="L12 M12 S12" 
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							hSpacing="0.5"
+						 	columnsL="3"
+						 	columnsM="3"
+						 	minContainerCols="3"
+						 	columnsS="3">		
+							
+							<Input id="searchField" width="100%" placeholder="Enter search criteria" submit="onSearch">
+								<layoutData>
+		  					    	<l:GridData span="L12 M12 S12"/>
+		   					 	</layoutData>
+							</Input>
+							<Button icon="sap-icon://search" text="Search" press="onSearch">
+								<layoutData>
+		    				  		<l:GridData span="L4 M4 S4"/>
+		   					 	</layoutData>
+							</Button>
+							<Button icon="sap-icon://decline" text="Clear Search Results" press="resetSearch">
+								<layoutData>
+		    				  		<l:GridData span="L6 M6 S6"/>
+		    					</layoutData>
+							</Button>
+						</l:Grid>
+					</f:SimpleForm>
+					<Button icon="sap-icon://filter" text="Filters" press="onNavigateFilter" class="sapUiSmallMarginBegin filterButton" type="Transparent"></Button>
+					<List id="searchResult"
+						visible="false"
+						items="{/results}"
+						headerText="Employee Details"
+						growing="true"
+						growingThreshold="10"
+						class="sapUiSmallMarginBottom">
+						
+						<items>
+							<CustomListItem>
+								<HBox>
+									<core:Icon size="2rem" src="sap-icon://customer" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+									<VBox>
+										<Label text="{empName}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+										<Label text="{empDesc}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+										<HBox>
+											<Label text="{group}" class="sapUiSmallMarginBegin" />
+											<Label text="{business}" class="sapUiSmallMarginBegin" />
+										</HBox>
+									</VBox>
+								</HBox>
+							</CustomListItem>
+						</items>
+					</List>
+				</content>
+			</Page>
+			<Page id="filterPage" showHeader="true">
+				<customHeader>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Text text="Filters" />
+						<ToolbarSpacer />
+					</Toolbar>
+				</customHeader>
+				<content>
+					<Label text="Group" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
+					<l:Grid
+						defaultSpan="L12 M12 S12" 
 						emptySpanL="0"
 						emptySpanM="0"
 						emptySpanS="0"
@@ -101,82 +199,54 @@
 					 	columnsL="2"
 					 	columnsM="2"
 					 	minContainerCols="2"
-					 	columnsS="2" >		
-						<SearchField id="searchField"  width="100%" search="onSearch">
-						<layoutData>
-	  					    <l:GridData span="L10 M10 S10"/>
-	   					 </layoutData>
-						</SearchField>			
-							<Button icon="sap-icon://refresh" width="20%" press="resetSearch">
-							<layoutData>
-	    				  <l:GridData span="L2 M2 S2"/>
-	    					</layoutData>
-							</Button>			
-				</l:Grid>
-				</f:SimpleForm>
-			<Panel id="panel" expandable="true" expanded="false" visible="false" headerText="Filters" width="auto" class="sapUiResponsiveMargin">
-				<content>
-
-					<Label text="Group" design="Bold" class="sapUiTinyMarginBegin"></Label>
-			
-					<l:Grid 
-							defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
-							emptySpanL="0"
-							emptySpanM="0"
-							emptySpanS="0"
-							hSpacing="1"
-						 	columnsL="2"
-						 	columnsM="2"
-						 	minContainerCols="2"
-						 	columnsS="2" >		
-							<ComboBox width="100%"
+					 	columnsS="2">
+						
+						<ComboBox width="100%"
 							id="groupsCB"
 							selectionChange="onItemSelect"
 							items="{
 								path: '/groups'
 							
 							}">
+							
 							<core:Item key="{group}" text="{group}" />	
 							<layoutData>
-		  					    <l:GridData span="L10 M10 S10"/>
-		   					 </layoutData>
-							</ComboBox>			
-								<Button icon="sap-icon://refresh" width="20%" press="resetGroup" >
-								<layoutData>
-		    				  <l:GridData span="L2 M2 S2"/>
-		    					</layoutData>
-								</Button>			
-					</l:Grid>
-				
-					<Label text="Business" design="Bold" class="sapUiTinyMarginBegin"></Label>
-					<l:Grid 
-							defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
-							emptySpanL="0"
-							emptySpanM="0"
-							emptySpanS="0"
-							vSpacing="0"
-							hSpacing="1"
-						 	columnsL="2"
-						 	columnsM="2"
-						 	minContainerCols="2"
-						 	columnsS="2" >		
-							<ComboBox width="100%"
-							id="businessListItem">
-							
-						
+	  					    	<l:GridData span="L10 M10 S10"/>
+	   					 	</layoutData>
+						</ComboBox>			
+						<Button icon="sap-icon://clear-filter" width="20%" press="resetGroup" >
 							<layoutData>
-		  					    <l:GridData span="L10 M10 S10"/>
-		   					 </layoutData>
-							</ComboBox>			
-								<Button icon="sap-icon://refresh" width="20%" press="resetBusiness" >
-								<layoutData>
-		    				  <l:GridData span="L2 M2 S2"/>
-		    					</layoutData>
-								</Button>			
+	    				  		<l:GridData span="L2 M2 S2"/>
+	    					</layoutData>
+						</Button>			
 					</l:Grid>
-										<Label text="Location" design="Bold" textAlign="center" class="sapUiTinyMarginBegin"></Label>
-					<l:Grid 
-						defaultSpan="L12 M12 S12" class="sapUiSmallMarginTop"
+					<Label text="Business" design="Bold" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
+					<l:Grid
+						defaultSpan="L12 M12 S12"
+						emptySpanL="0"
+						emptySpanM="0"
+						emptySpanS="0"
+						vSpacing="0"
+						hSpacing="1"
+					 	columnsL="2"
+					 	columnsM="2"
+					 	minContainerCols="2"
+					 	columnsS="2">
+						
+						<ComboBox width="100%" id="businessListItem">
+							<layoutData>
+	  					    	<l:GridData span="L10 M10 S10"/>
+	   					 	</layoutData>
+						</ComboBox>			
+						<Button icon="sap-icon://clear-filter" width="20%" press="resetBusiness" >
+							<layoutData>
+	    				  		<l:GridData span="L2 M2 S2"/>
+	    					</layoutData>
+						</Button>			
+					</l:Grid>
+					<Label text="Location" design="Bold" textAlign="center" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
+					<l:Grid
+						defaultSpan="L12 M12 S12" 
 						emptySpanL="0"
 						emptySpanM="0"
 						emptySpanS="0"
@@ -184,62 +254,33 @@
 						columnsL="2"
 						columnsM="2"
 						minContainerCols="2"
-						columnsS="2" >		
+						columnsS="2">
+						
 						<ComboBox width="100%" id="cmbBox"
-							items="{
-								path:'/locations'
-							}">
+						items="{
+							path:'/locations'
+						}">
 							
 							<core:Item text="{location}" key="{key}" />	
 							<layoutData>
-		  					    <l:GridData span="L10 M10 S10"/>
-		   					 </layoutData>
-							</ComboBox>			
-								<Button icon="sap-icon://refresh"  press="resetLoc" width="20%" >
-								<layoutData>
-		    				  <l:GridData span="L2 M2 S2"/>
-		    					</layoutData>
-								</Button>			
+	  					    	<l:GridData span="L10 M10 S10"/>
+	   					 	</layoutData>
+						</ComboBox>			
+						<Button icon="sap-icon://clear-filter"  press="resetLoc" width="20%" >
+							<layoutData>
+	    						<l:GridData span="L2 M2 S2"/>
+	    					</layoutData>
+						</Button>			
 					</l:Grid>
-					<FlexBox><Label></Label></FlexBox>    
 					<Text height="9%" text=" "></Text>
-					<Button text="Apply" width="100%" press="updateResults" type="Emphasized"></Button>
-					<Button text="Cancel" width="100%" press="cancel" type="Emphasized"></Button>
-					</content>
-				</Panel>
-				<List id="searchResult"
-					visible="false"
-					items="{/results}"
-					headerText="Employee Details">
-					<items>
-						<ObjectListItem
-							title="{empName}"
-							type="Active"
-							press="onListItemPress"
-							number="{
-								path:'location'
-								
-							}"
-							numberUnit="{CurrencyCode}">
-							<!-- <firstStatus>
-								<ObjectStatus
-									text="{empDesc}"
-									state="{
-											path: 'Status',
-										formatter: 'sap.m.sample.ObjectListItem.Formatter.status'
-									}" />
-							</firstStatus> -->
-							<attributes>
-							
-								<ObjectAttribute text="{empDesc}" />
-								<ObjectAttribute text="{business}" />
-									<ObjectAttribute text="{group}" />
-							</attributes>
-						</ObjectListItem>
-					</items>
-				</List>
-			</content>
-		</Page>
+					<Toolbar>
+						<ToolbarSpacer />
+						<Button text="Cancel" press="cancel" width="50%" type="Reject" class="sapUiSmallMargin" />
+						<Button text="Apply" press="updateResults" width="50%" type="Emphasized" class="sapUiSmallMargin" />
+						<ToolbarSpacer />
+					</Toolbar>
+				</content>
+			</Page>
 		</pages>
 	</App>
 </mvc:View>
