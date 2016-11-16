@@ -9,10 +9,11 @@
 	
 	<App id="app2">
 		<pages>
-			<Page title="Login Page" showHeader="true" id="page1">
+			<Page title="Login Page" showHeader="true" id="loginPage">
 				<customHeader>
 					<Bar>
-						<contentMiddle>			
+						<contentMiddle>
+							<!-- To be replaced with new image file -->
 							<Image src="images/nbcu.png"></Image>
 						</contentMiddle>
 					</Bar>
@@ -32,49 +33,73 @@
 							columnsL="1"
 							columnsM="1"
 							class="editableForm">
-							
-							<Input id="input" value="" placeholder="Enter your SSO ID"></Input>		
-							<Input id="password" value="" type="Password" placeholder="Enter your password"></Input>
+						
+							<Input id="input" value="user" placeholder="Enter your SSO ID"></Input>		
+							<Input id="password" value="password" type="Password" placeholder="Enter your password" submit="submit"/>
 							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
 						</f:SimpleForm>
 					</VBox>
 					<Toolbar>   
-						<CheckBox></CheckBox>
+						<CheckBox id="" select="onRememberMe"></CheckBox>
 						<Label text="Remember my Id"></Label>
 						<ToolbarSpacer/>
-						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" />			
+						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
 					</Toolbar>
 					<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
 						<headerToolbar>
 							<Toolbar>
-								<Title text="Links" />					
+								<Title text="Links" />			
 							</Toolbar>
 						</headerToolbar>
 						<content>
-							<l:VerticalLayout class="sapUiSmallMargin" >
-								<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp"></Link>
-							</l:VerticalLayout>
+								<l:VerticalLayout>
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" />
+								</l:VerticalLayout>
 						</content>
 					</Panel>
 				</content>
-		 		<footer>
-		 			<Toolbar height="auto">
+			 	<footer>
+		 			<Toolbar height="30%" class="footer">
 		 				<l:VerticalLayout width="100%">
- 							<Label text="NBCUniversal" class="nbcuHome"/>
- 							<l:ResponsiveFlowLayout>
- 							<Link class="linkHome" text="CONTACT US" href="" textAlign="Begin" width="auto"></Link>
- 							<Link class="linkHome" text="STORE" href="" textAlign="Begin" width="auto"></Link>
-			 				<Link class="linkHome" text="PRIVACY POLICY" href="" textAlign="Begin" width="auto"></Link>
-			 				<Link class="linkHome" text="TERMS OF SERVICE" href="" textAlign="Begin" width="auto"></Link>
-			 				</l:ResponsiveFlowLayout>
-			 				<Label text="2016 Copyright NBCUniversal">
-			 				</Label>
-			 				
+ 							<Label text="NBCUniversal" class="nbcuHome sapUiSmallMarginBegin sapUiSmallMarginBottom sapUiSmallMarginTop" />
+ 							
+ 							<l:Grid class="sapUiSmallMarginTop sapUiSmallMarginBegin"
+							defaultSpan="L12 M12 S12" 
+							emptySpanL="0"
+							emptySpanM="0"
+							emptySpanS="0"
+							hSpacing="0.5"
+						 	columnsL="3"
+						 	columnsM="3"
+						 	minContainerCols="3"
+						 	columnsS="3">		
+							
+							<Link class="linkHome linkHome1 sapMLink" text="CONTACT US" href="">
+								<layoutData>
+		  					    	<l:GridData span="L4 M4 S4"/>
+		   					 	</layoutData>
+		   					 </Link>								
+
+ 							<Link class="linkHome" text="STORE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L2 M2 S2"/>
+		   					 	</layoutData>	 							
+ 							</Link>
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="">
+								<layoutData>
+		  					    	<l:GridData span="L5 M5 S5"/>
+		   					 	</layoutData>
+			 				</Link>
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="">
+								<layoutData>
+		  					    	<l:GridData span="L6 M6 S6"/>
+		   					 	</layoutData>
+			 				</Link>
+						</l:Grid>
+			 				<Label text="2016 Copyright NBCUniversal" id="copyrightLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
 			 			</l:VerticalLayout>
-			 			<l:VerticalLayout>
- 							</l:VerticalLayout>
 		 			</Toolbar>
-				</footer>  
+				</footer>
 			</Page>
 		</pages>
 	</App>
