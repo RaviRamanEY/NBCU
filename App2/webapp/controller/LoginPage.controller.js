@@ -11,12 +11,21 @@ sap.ui.define([
 			this.getView().setModel(oModel);
 		},
 		
+		onAfterRendering: function() {
+			var copyrightLabel = this.getView().byId("copyrightLabel");
+			copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
+		},
+		
+		onRememberMe: function() {
+			console.log("onRememberMe");
+		},
+		
 		submit: function() {
 			var inp = this.getView().byId("input").getValue();
 			var pwd = this.getView().byId("password").getValue();
 			
 			if(inp === "user" && pwd === "password") {				
-				this.getView().byId("app2").to(this.getView().byId("page2")) ;
+				this.getView().byId("app2").to(this.getView().byId("searchPage"));
 			} else {
 				sap.m.MessageToast.show("Please check your SSO id and Password", {
 					duration: 5000
@@ -29,14 +38,24 @@ sap.ui.define([
 			this.getView().byId("password").setValue("");
 		},
 		
-		onSearch: function(oEvent) {		
+		onSearch: function() {
+			var sQuery = this.getView().byId("searchField").getValue();
+			
+			if(sQuery === "") {
+				MessageToast.show("Please enter a search criteria.");
+				return;
+			}
+			
+			if(sQuery.indexOf("*") > -1 || sQuery.indexOf("?") > -1) {
+				MessageToast.show("Wildcards (*, ?) are not supported. Please remove wildcards and try again.");
+				return;
+			}
+			
 			var oController = this;
 			
 			this.getView().byId("searchResult").setVisible(true);
-			this.getView().byId("panel").setVisible(true);
 			
 			var aFilter = [];
-			var sQuery = oEvent.getSource().getValue();
 			
 			if (sQuery && sQuery.length > 0) {
 				var filter = new sap.ui.model.Filter("empName", sap.ui.model.FilterOperator.Contains, sQuery);
@@ -45,7 +64,11 @@ sap.ui.define([
 			
 			var oList = this.getView().byId("searchResult");
 			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);			
+			oBinding.filter(aFilter);
+		},
+		
+		onNavigateFilter: function() {
+			this.getView().byId("app2").to(this.getView().byId("filterPage"));
 		},
 		
 		updateResults: function(oEvent) {
@@ -77,13 +100,16 @@ sap.ui.define([
 			var oList = this.getView().byId("searchResult");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
+			
+			this.getView().byId("app2").to(this.getView().byId("searchPage"));
 		},
 		
 		cancel: function(oEvent) {
-			this.getView().byId("panel").setVisible(false);
 			this.getView().byId("cmbBox").setValue("");
 			this.getView().byId("groupsCB").setValue("");
 			this.getView().byId("businessListItem").setValue("");
+			
+			this.getView().byId("app2").to(this.getView().byId("searchPage"));
 		},
 		
 		onItemSelect: function(oEvent) {
@@ -94,14 +120,15 @@ sap.ui.define([
 		},
 		
 		resetSearch: function() {
-			this.getView().byId("idSearchPage--searchField").setValue("");
-			this.getView().byId("idSearchPage--panel").setExpandable(false);
-			this.getView().byId("idSearchPage--cmbBox").setValue("");
-			this.getView().byId("idSearchPage--groupsCB").setValue("");
-			this.getView().byId("idSearchPage--businessListItem").setValue("");
+			this.getView().byId("searchField").setValue("");
 			
-			var oList = this.getView().byId("searchResult");
-			oList.setBinding("");
+			this.getView().byId("cmbBox").setValue("");
+			this.getView().byId("groupsCB").setValue("");
+			this.getView().byId("businessListItem").setValue("");
+			
+			this.getView().byId("searchResult").setVisible(false);
+			
+			this.getView().byId("searchField").focus();
 		},
 		
 		resetLoc: function() {
