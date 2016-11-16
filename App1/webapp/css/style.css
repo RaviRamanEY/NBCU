@@ -96,3 +96,10 @@ header#__bar0{
 .sapMPanelExpandableIcon{
 	transform: translateY(-50%) rotate(90deg) !important;
 }
+
+#__label1{
+	font-size: xx-large;
+}
+.linkHome{
+	color: white;
+}

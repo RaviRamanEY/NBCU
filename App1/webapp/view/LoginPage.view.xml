@@ -58,11 +58,21 @@
 					</Panel>
 				</content>
 		 		<footer>
-		 			<Toolbar>
-		 				<l:VerticalLayout>
- 							<Label text="2016 Copyright NBCUniversal" />
-		 					<Link text="Contact Us" href=""></Link>
-		 				</l:VerticalLayout>
+		 			<Toolbar height="auto">
+		 				<l:VerticalLayout width="100%">
+ 							<Label text="NBCUniversal" class="nbcuHome"/>
+ 							<l:ResponsiveFlowLayout>
+ 							<Link class="linkHome" text="CONTACT US" href="" textAlign="Begin" width="auto"></Link>
+ 							<Link class="linkHome" text="STORE" href="" textAlign="Begin" width="auto"></Link>
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="" textAlign="Begin" width="auto"></Link>
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="" textAlign="Begin" width="auto"></Link>
+			 				</l:ResponsiveFlowLayout>
+			 				<Label text="2016 Copyright NBCUniversal">
+			 				</Label>
+			 				
+			 			</l:VerticalLayout>
+			 			<l:VerticalLayout>
+ 							</l:VerticalLayout>
 		 			</Toolbar>
 				</footer>  
 			</Page>
