@@ -2,6 +2,11 @@ a.linkHome.sapMLnk.sapMLnkMaxWidth {
 	color: rgb(141, 141, 141) !important;
 	font-size: 12px !important;
 	font-family: verdana !important;
+	font-weight: bold !important;
+}
+
+.results:nth-child(even) {
+	background-color: rgb(250, 250, 250);
 }
 
 .footer {
@@ -12,13 +17,14 @@ a.linkHome.sapMLnk.sapMLnkMaxWidth {
 	color: rgb(141, 141, 141) !important;
 	font-size: 28px !important;
 	font-family: initial !important;
-	font-weight: bold;
+	font-weight: bold !important;
 }
 
 span.copyrightLabel {
 	color: rgb(141, 141, 141) !important;
 	font-size: 12px !important;
 	font-family: verdana !important;
+	font-weight: bold !important;
 }
 
 .filterLabelHeading {
@@ -121,9 +127,6 @@ header#__bar0{
 	color: white;
 }
 
-.sapMBtnInner.sapMBtnText{
-	color : 
-}
 .sapMPanelExpandableIcon{
 	transform: translateY(-50%) rotate(90deg) !important;
 }

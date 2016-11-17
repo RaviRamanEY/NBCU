@@ -20,9 +20,34 @@ sap.ui.define([
 		},*/
 		
 		onInit: function() {
-			var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData("mockdata/data.json");
-			this.getView().setModel(oModel);
+			var controlData = {
+				remember: false
+			};
+			
+			var controlModel = new sap.ui.model.json.JSONModel(controlData);
+			this.getView().setModel(controlModel);
+		},
+		
+		onRememberMe: function() {
+			console.log("eere");
+			
+			if(this._getProperty("remember")) {
+				this._setProperty("remember", false);
+			} else {
+				this._setProperty("remember", true);
+			}
+		},
+		
+		_getProperty: function(prop) {
+			var control = JSON.parse(this.getView().getModel().getJSON());
+			return control[prop];
+		},
+		
+		_setProperty: function(prop, value) {
+			var control = JSON.parse(this.getView().getModel().getJSON());
+			control[prop] = value;
+			
+			this.getView().getModel().setData(control);
 		},
 		
 		onAfterRendering: function() {
@@ -30,29 +55,31 @@ sap.ui.define([
 			copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
 			
 			var cookieString = document.cookie;
-			
-			console.log("cookieString: " + cookieString);
-			
 			var cookies = cookieString.split(";");
 			
-			console.log("len: " + cookies.length);
-			
 			for(var i = 0; i < cookies.length; i++) {
-				console.log("i: " + i + " | cookie: " + cookies[i].trim());
-				
 				if(cookies[i].trim().split("=")[0] === "sso_id") {
 					this.getView().byId("input").setValue(cookies[i].trim().split("=")[1]);
+					this._setProperty("remember", true);
 				}
 				
 				if(cookies[i].trim().split("=")[0] === "sso_id_pwd") {
 					this.getView().byId("password").setValue(cookies[i].trim().split("=")[1]);
 				}
 			}
-		},
-		
-		onRememberMe: function() {
-			console.log("onRememberMe");
-		},
+			
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.loadData("mockdata/data.json");
+			this.getView().byId("searchResult").setModel(oModel);
+			
+			var oLocModel = new sap.ui.model.json.JSONModel();
+			oLocModel.loadData("mockdata/locations.json");
+			this.getView().byId("cmbBox").setModel(oLocModel);
+			
+			var oGrpModel = new sap.ui.model.json.JSONModel();
+			oGrpModel.loadData("mockdata/groups.json");
+			this.getView().byId("groupsCB").setModel(oGrpModel);
+		},		
 		
 		submit: function() {
 			var inp = this.getView().byId("input").getValue();
@@ -60,7 +87,13 @@ sap.ui.define([
 			
 			if(inp === "aaaaa" && pwd === "password") {				
 				
-				this._saveSSO(inp, pwd);
+				console.log(this._getProperty("remember"));
+				
+				if(this._getProperty("remember")) {
+					this._saveSSO(inp, pwd);					
+				} else {
+					this._removeSSO();
+				}
 				
 				this.getView().byId("app2").to(this.getView().byId("searchPage"));
 			} else {
@@ -71,9 +104,18 @@ sap.ui.define([
 		},
 		
 		_saveSSO: function(inp, pwd) {
+			console.log("saving");
+			
 			document.cookie = "sso_id=" + inp;
 			document.cookie = "sso_id_pwd=" + pwd;
-		}, 
+		},
+		
+		_removeSSO: function() {
+			console.log("removing");
+			
+			document.cookie = "sso_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+			document.cookie = "sso_id_pwd=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+		},
 		
 		reset: function() {
 			this.getView().byId("input").setValue("");
@@ -93,31 +135,35 @@ sap.ui.define([
 				return;
 			}
 			
-			var oController = this;
-			
-			this.getView().byId("searchResult").setVisible(true);
+			var oController = this;	
 			
 			var aFilter = [];
 			
 			if (sQuery && sQuery.length > 0) {
-				var filter = new sap.ui.model.Filter("empName", sap.ui.model.FilterOperator.Contains, sQuery);
-				aFilter.push(filter);
+				var filter1 = new sap.ui.model.Filter("firstname", sap.ui.model.FilterOperator.EQ, sQuery);
+				//var filter2 = new sap.ui.model.Filter("lastname", sap.ui.model.FilterOperator.Contains, sQuery);
+				
+				aFilter.push(filter1);
+				//aFilter.push(filter2);
 			}
 			
 			var oList = this.getView().byId("searchResult");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
 			
-			/*
-			var scr = document.createElement("script");
-			scr.src = "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json&callback=abc(data)";
-			
-			document.getElementsByTagName('head')[0].appendChild(scr);
+			this.getView().byId("searchResult").setVisible(true);
 
-			var oController = this;
+			/*
+		
+			var scr = document.createElement("script");
+			scr.src = url + "&callback=abc(data)";
+			
+			document.getElementsByTagName('head')[0].appendChild(scr);*/
+
+			/*var url = "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json";
 			
 			$.ajax({
-				url: "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json",
+				url: url,
 				method: "get",
 				dataType: "jsonp",
 				success: function(data, status, xhr) {
@@ -132,8 +178,7 @@ sap.ui.define([
 				error: function(xhr, error, status) {
 					console.log("error: " + error + " | status: " + status);
 				}
-			});
-			*/
+			});*/
 		},
 		
 		onNavigateFilter: function() {
@@ -145,22 +190,22 @@ sap.ui.define([
 			var filter;
 						
 			if(this.getView().byId("searchField").getValue() && this.getView().byId("searchField").getValue().length > 0) {
-				filter = new sap.ui.model.Filter("empName", sap.ui.model.FilterOperator.Contains, this.getView().byId("searchField").getValue());
+				filter = new sap.ui.model.Filter("firstname", sap.ui.model.FilterOperator.Contains, this.getView().byId("searchField").getValue());
 				aFilter.push(filter);
 			}
 
 			if(this.getView().byId("cmbBox").getValue() && this.getView().byId("cmbBox").getValue().length >  0){
-				filter = new sap.ui.model.Filter("location", sap.ui.model.FilterOperator.Contains, this.getView().byId("cmbBox").getValue());
+				filter = new sap.ui.model.Filter("workcity", sap.ui.model.FilterOperator.Contains, this.getView().byId("cmbBox").getValue());
 				aFilter.push(filter);
 			}
 
 			if(this.getView().byId("groupsCB").getValue() && this.getView().byId("groupsCB").getValue().length >  0){
-				filter = new sap.ui.model.Filter("group", sap.ui.model.FilterOperator.Contains, this.getView().byId("groupsCB").getValue());
+				filter = new sap.ui.model.Filter("businesssegment", sap.ui.model.FilterOperator.Contains, this.getView().byId("groupsCB").getValue());
 				aFilter.push(filter);
 			}
 
 			if(this.getView().byId("businessListItem").getValue() && this.getView().byId("businessListItem").getValue().length > 0){
-				filter = new sap.ui.model.Filter("business", sap.ui.model.FilterOperator.Contains, this.getView().byId("businessListItem").getValue());
+				filter = new sap.ui.model.Filter("subbusinesssegment", sap.ui.model.FilterOperator.Contains, this.getView().byId("businessListItem").getValue());
 				aFilter.push(filter);
 			}
 
@@ -176,18 +221,18 @@ sap.ui.define([
 		},
 		
 		onItemSelect: function(oEvent) {
-			var oList = this.getView().byId("searchResult");
-			var businessList = this.byId("businessListItem");
-			businessList.setEnabled(true);
-		    var oTemplate = new sap.ui.core.ListItem({ key : "{business}", text : "{business}"})
-		    businessList.bindItems(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/businesses", oTemplate);
+			var businessList = this.getView().byId("businessListItem");
+		    var bus = this.getView().byId("groupsCB").getModel().getProperty(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/businesses");
+		    var busModel = new sap.ui.model.json.JSONModel(bus);
+		    businessList.setModel(busModel);
+		    businessList.setEnabled(true);
 		},
 		
 		resetSearch: function() {
 			this.getView().byId("searchField").setValue("");
 			
 			this.getView().byId("cmbBox").setValue("");
-			this.getView().byId("groupsCB").setValue("");
+			this.getView().byId("groupsCB").setSelectedItem(null);
 			this.getView().byId("businessListItem").setValue("");
 			
 			this.getView().byId("businessListItem").setEnabled(false);
@@ -202,7 +247,8 @@ sap.ui.define([
 		},
 		
 		resetGroup: function() {
-			this.getView().byId("groupsCB").setValue("");
+			this.getView().byId("groupsCB").setSelectedItem(null);
+			var businessList = this.byId("businessListItem");
 			businessList.setEnabled(false);
 		},
 		

@@ -25,7 +25,7 @@
 							maxContainerCols="2"
 							editable="true"
 							layout="ResponsiveGridLayout"
-							title="Login to NBCU Now !"
+							title=""
 							labelSpanL="3"
 							labelSpanM="3"
 							emptySpanL="4"
@@ -36,11 +36,11 @@
 						
 							<Input id="input" value="" placeholder="Enter your SSO ID"></Input>		
 							<Input id="password" value="" type="Password" placeholder="Enter your password" submit="submit"/>
-							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
+							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank"/>
 						</f:SimpleForm>
 					</VBox>
 					<Toolbar>   
-						<CheckBox id="" select="onRememberMe"></CheckBox>
+						<CheckBox id="checkRemember" select="onRememberMe" selected="{= ${/remember} === true}"></CheckBox>
 						<Label text="Remember my Id"></Label>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
@@ -53,7 +53,7 @@
 						</headerToolbar>
 						<content>
 								<l:VerticalLayout>
-									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" />
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" target="_blank"/>
 								</l:VerticalLayout>
 						</content>
 					</Panel>
@@ -74,23 +74,23 @@
 						 	minContainerCols="3"
 						 	columnsS="3">		
 							
-							<Link class="linkHome" text="CONTACT US" href="">
+							<Link class="linkHome" text="CONTACT US" href="http://www.nbcuniversal.com/contact-us" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L4 M4 S4"/>
 		   					 	</layoutData>
 		   					 </Link>								
 
- 							<Link class="linkHome" text="STORE" href="">
+ 							<Link class="linkHome" text="STORE" href="http://www.nbcuniversalstore.com/" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L2 M2 S2"/>
 		   					 	</layoutData>	 							
  							</Link>
-			 				<Link class="linkHome" text="PRIVACY POLICY" href="">
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="http://www.nbcuniversal.com/privacy" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L5 M5 S5"/>
 		   					 	</layoutData>
 			 				</Link>
-			 				<Link class="linkHome" text="TERMS OF SERVICE" href="">
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="http://www.nbcuniversal.com/terms" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L6 M6 S6"/>
 		   					 	</layoutData>
@@ -148,7 +148,7 @@
 							</Button>
 							<Button icon="sap-icon://decline" text="Clear Search Results" press="resetSearch">
 								<layoutData>
-		    				  		<l:GridData span="L6 M6 S6"/>
+		    				  		<l:GridData span="L7 M7 S7"/>
 		    					</layoutData>
 							</Button>
 						</l:Grid>
@@ -161,19 +161,17 @@
 						growing="true"
 						growingThreshold="10"
 						noDataText="No search result found."
-						class="sapUiSmallMarginBottom">
+						class="sapUiTinyMarginBottom">
 						
 						<items>
-							<CustomListItem>
+							<CustomListItem class="results">
 								<HBox>
-									<Image height="4rem" width="4rem" src="{empPic}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+									<Image height="5rem" width="5rem" src="{empPic}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
 									<VBox>
-										<Label text="{firstname + lastname}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" design="Bold"/>
-										<Label text="{designation}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" /> 
-										<HBox>
-											<Label text="{businesssegment + subbusinesssegment}" class="sapUiSmallMarginBegin" />
-											<Label text="{workcity}" class="sapUiSmallMarginBegin" />
-										</HBox>
+										<Label text="{path: 'firstname'} {path: 'lastname'}" class="sapUiSmallMarginBegin sapUiSmallMarginTop lblName" design="Bold"/>
+										<Label text="{designation}" class="sapUiSmallMarginBegin lblDesignation" />
+										<Label text="{path: 'businesssegment'} {path: 'subbusinesssegment'}" class="sapUiSmallMarginBegin lblBusiness" />
+										<Label text="{workcity}" class="sapUiSmallMarginBegin sapUiSmallMarginBottom lblCity" />
 									</VBox>
 								</HBox>
 							</CustomListItem>
@@ -233,7 +231,12 @@
 					 	minContainerCols="2"
 					 	columnsS="2">
 						
-						<ComboBox width="100%" id="businessListItem" enabled="false">
+						<ComboBox width="100%" id="businessListItem" enabled="false"
+								items="{
+								path:'/'
+							}">
+							
+							<core:Item text="{business}" key="{business}" />	
 							<layoutData>
 	  					    	<l:GridData span="L10 M10 S10"/>
 	   					 	</layoutData>
@@ -272,7 +275,6 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Text height="9%" text=" "></Text>
 					<Toolbar>
 						<ToolbarSpacer />
 						<Button text="Cancel" press="cancel" width="50%" type="Reject" class="sapUiSmallMargin" />
