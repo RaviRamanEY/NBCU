@@ -5,9 +5,9 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("com.nbcu.controller.LoginPage", {
-		/*getData: function() {
+		_getData: function() {
 			$.ajax({
-				url: "http://supportcentral.inbcu.com/images/person/temp/502019294.jpg",
+				url: "http://dev.nbcunow.com/api/v1/taxonomy/idm_location",
 				method: "get",
 				dataType: "jsonp",
 				success: function(data, status, xhr) {
@@ -17,15 +17,20 @@ sap.ui.define([
 					console.log("error: " + status);
 				}
 			});
-		},*/
+		},
 		
 		onInit: function() {
 			var controlData = {
-				remember: false
+				remember: false,
+				location: "",
+				group: "",
+				business: ""
 			};
 			
 			var controlModel = new sap.ui.model.json.JSONModel(controlData);
 			this.getView().setModel(controlModel);
+			
+			this._getData();
 		},
 		
 		onRememberMe: function() {
@@ -182,6 +187,10 @@ sap.ui.define([
 		},
 		
 		onNavigateFilter: function() {
+			this.getView().byId("cmbBox").setValue(this._getProperty("location"));
+			this.getView().byId("groupsCB").setValue(this._getProperty("group"));
+			this.getView().byId("businessListItem").setValue(this._getProperty("business"));
+			
 			this.getView().byId("app2").to(this.getView().byId("filterPage"));
 		},
 		
@@ -243,16 +252,18 @@ sap.ui.define([
 		},
 		
 		resetLoc: function() {
+			this._setProperty("location", this.getView().byId("cmbBox").getValue());
 			this.getView().byId("cmbBox").setValue("");
 		},
 		
 		resetGroup: function() {
+			this._setProperty("group", this.getView().byId("groupsCB").getValue());
 			this.getView().byId("groupsCB").setSelectedItem(null);
-			var businessList = this.byId("businessListItem");
-			businessList.setEnabled(false);
+			this.getView().byId("businessListItem").setEnabled(false);
 		},
 		
 		resetBusiness: function() {
+			this._setProperty("business", this.getView().byId("businessListItem").getValue());
 			this.getView().byId("businessListItem").setValue("");
 		}
 	});

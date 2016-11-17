@@ -3,15 +3,15 @@
 		"firstname": "Harry",
 		"lastname": "Potter 1",
 		"designation": "CSC Sales and Service Consultant",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Jane",
 		"lastname": "Smith",
 		"designation": "Director of Community Resources",
-		"empPic": "images/Lou2.png",
+		"empPic": "images/Lou2.jpg",
 		"workcity": "Texas",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "CNBC"
@@ -19,46 +19,46 @@
 		"firstname": "Harry",
 		"lastname": "Potter 2",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Studio & Distribution",
 		"subbusinesssegment": "Universal Cable Productions"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 3",
 		"designation": "Director Sales",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Jose_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Jose",
 		"businesssegment": "Studio & Distribution",
 		"subbusinesssegment": "Universal Cable Productions"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 4",
 		"designation": "Sr Engineer,Network Eng(Arch&Dsgn)",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "MSNBC"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 5",
 		"designation": "Director Sales",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 6",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Jose_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Jose",
 		"businesssegment": "International",
 		"subbusinesssegment": "CNBC International"
 	}, {
 		"empName": "Sherlock Holmes",
 		"designation": "Consultant Detective",
-		"empPic": "images/Lou2.png",
+		"empPic": "images/Lou2.jpg",
 		"workcity": "Fort Worth",
 		"businesssegment": "International",
 		"subbusinesssegment": "CNBC International"
@@ -66,63 +66,63 @@
 		"firstname": "Harry",
 		"lastname": "Potter 7",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "International",
 		"subbusinesssegment": "CNBC International"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 8",
 		"designation": "Director Sales",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "International",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 9",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "washington_dc",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "Washington",
 		"businesssegment": "Broadcast",
 		"subbusinesssegment": "NBC Sports"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 10",
 		"designation": "Director Sales",
-		"empPic": "images/Lou2.png",
-		"workcity": "washington_dc",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "Washington",
 		"businesssegment": "Broadcast",
 		"subbusinesssegment": "NBC Primetime"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 11",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "washington_dc",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "Washington",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 12",
 		"designation": "Director Sales",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Operations & Technical Services",
 		"subbusinesssegment": "Smart Bar"
 	}, {
 		"firstname": "Harry",
 		"lastname": "Potter 13",
 		"designation": "Director Sales",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Operations & Technical Services",
 		"subbusinesssegment": "Smart Bar"
 	}, {
 		"firstname": "Harvey",
 		"lastname": "Spector",
 		"designation": "Attorney",
-		"empPic": "images/Lou2.png",
+		"empPic": "images/Lou2.jpg",
 		"workcity": "Texas",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
@@ -130,7 +130,7 @@
 		"firstname": "Sheldon",
 		"lastname": "Cooper",
 		"designation": "Physicist",
-		"empPic": "images/Lou1.png",
+		"empPic": "images/Lou1.jpg",
 		"workcity": "Dallas",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Fandango"
@@ -138,40 +138,40 @@
 		"firstname": "Mike",
 		"lastname": "Ross",
 		"designation": "Assistant Attorney",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Watson",
 		"lastname": "John",
 		"designation": "Army Doctor",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Gregory",
 		"lastname": "Lestrad",
 		"designation": "Inspector",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "TeleXitos"
 	}, {
 		"firstname": "Jessica",
 		"lastname": "Pearson",
 		"designation": "General Counsel",
-		"empPic": "images/Lou1.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou1.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "Finance"
 	}, {
 		"firstname": "Angelina",
 		"lastname": "Jolie",
 		"designation": "Chief Entertainment Officer",
-		"empPic": "images/Lou2.png",
-		"workcity": "San_Diego_CA",
+		"empPic": "images/Lou2.jpg",
+		"workcity": "San Diego",
 		"businesssegment": "Corporate",
 		"subbusinesssegment": "TeleXitos"
 	}]
