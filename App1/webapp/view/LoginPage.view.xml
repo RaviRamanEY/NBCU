@@ -25,7 +25,7 @@
 							maxContainerCols="2"
 							editable="true"
 							layout="ResponsiveGridLayout"
-							title="Login to NBCU Now !"
+							title=""
 							labelSpanL="3"
 							labelSpanM="3"
 							emptySpanL="4"
@@ -34,13 +34,13 @@
 							columnsM="1"
 							class="editableForm">
 						
-							<Input id="input" value="user" placeholder="Enter your SSO ID"></Input>		
-							<Input id="password" value="password" type="Password" placeholder="Enter your password" submit="submit"/>
-							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" />
+							<Input id="input" value="" placeholder="Enter your SSO ID"></Input>		
+							<Input id="password" value="" type="Password" placeholder="Enter your password" submit="submit"/>
+							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank"/>
 						</f:SimpleForm>
 					</VBox>
 					<Toolbar>   
-						<CheckBox id="" select="onRememberMe"></CheckBox>
+						<CheckBox id="checkRemember" select="onRememberMe" selected="{= ${/remember} === true}"></CheckBox>
 						<Label text="Remember my Id"></Label>
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
@@ -53,7 +53,7 @@
 						</headerToolbar>
 						<content>
 								<l:VerticalLayout>
-									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" />
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" target="_blank"/>
 								</l:VerticalLayout>
 						</content>
 					</Panel>
@@ -74,29 +74,29 @@
 						 	minContainerCols="3"
 						 	columnsS="3">		
 							
-							<Link class="linkHome linkHome1 sapMLink" text="CONTACT US" href="">
+							<Link class="linkHome" text="CONTACT US" href="http://www.nbcuniversal.com/contact-us" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L4 M4 S4"/>
 		   					 	</layoutData>
 		   					 </Link>								
 
- 							<Link class="linkHome" text="STORE" href="">
+ 							<Link class="linkHome" text="STORE" href="http://www.nbcuniversalstore.com/" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L2 M2 S2"/>
 		   					 	</layoutData>	 							
  							</Link>
-			 				<Link class="linkHome" text="PRIVACY POLICY" href="">
+			 				<Link class="linkHome" text="PRIVACY POLICY" href="http://www.nbcuniversal.com/privacy" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L5 M5 S5"/>
 		   					 	</layoutData>
 			 				</Link>
-			 				<Link class="linkHome" text="TERMS OF SERVICE" href="">
+			 				<Link class="linkHome" text="TERMS OF SERVICE" href="http://www.nbcuniversal.com/terms" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L6 M6 S6"/>
 		   					 	</layoutData>
 			 				</Link>
 						</l:Grid>
-			 				<Label text="2016 Copyright NBCUniversal" id="copyrightLabel" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+			 				<Text text="2016 Copyright NBCUniversal" id="copyrightLabel" class="copyrightLabel sapUiSmallMarginBegin sapUiSmallMarginTop" />
 			 			</l:VerticalLayout>
 		 			</Toolbar>
 				</footer>
