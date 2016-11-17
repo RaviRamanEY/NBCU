@@ -1,7 +1,7 @@
-.linkHome .linkHome1 .sapMLink {
+a.linkHome.sapMLnk.sapMLnkMaxWidth {
 	color: rgb(141, 141, 141) !important;
 	font-size: 12px !important;
-	font-family: serif !important;
+	font-family: verdana !important;
 }
 
 .footer {
@@ -15,19 +15,14 @@
 	font-weight: bold;
 }
 
-.copyrightLabel .sapMIBar-CTX.sapMFooter-CTX .sapMLabel {
+span.copyrightLabel {
 	color: rgb(141, 141, 141) !important;
-	font-size: 10px !important;
+	font-size: 12px !important;
 	font-family: verdana !important;
 }
 
 .filterLabelHeading {
 	color: white;
-}
-
-.filterButton .sapMBtnTransparent .sapMBtnInner {
-	color: rgb(141, 141, 141) !important;
-	font-size: 20px !important;
 }
 
 .sapMTB {

@@ -5,6 +5,20 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("com.nbcu.controller.LoginPage", {
+		/*getData: function() {
+			$.ajax({
+				url: "http://supportcentral.inbcu.com/images/person/temp/502019294.jpg",
+				method: "get",
+				dataType: "jsonp",
+				success: function(data, status, xhr) {
+					console.log("data: " + data);
+				},
+				error: function(xhr, status) {
+					console.log("error: " + status);
+				}
+			});
+		},*/
+		
 		onInit: function() {
 			var oModel = new sap.ui.model.json.JSONModel();
 			oModel.loadData("mockdata/data.json");
@@ -14,6 +28,26 @@ sap.ui.define([
 		onAfterRendering: function() {
 			var copyrightLabel = this.getView().byId("copyrightLabel");
 			copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
+			
+			var cookieString = document.cookie;
+			
+			console.log("cookieString: " + cookieString);
+			
+			var cookies = cookieString.split(";");
+			
+			console.log("len: " + cookies.length);
+			
+			for(var i = 0; i < cookies.length; i++) {
+				console.log("i: " + i + " | cookie: " + cookies[i].trim());
+				
+				if(cookies[i].trim().split("=")[0] === "sso_id") {
+					this.getView().byId("input").setValue(cookies[i].trim().split("=")[1]);
+				}
+				
+				if(cookies[i].trim().split("=")[0] === "sso_id_pwd") {
+					this.getView().byId("password").setValue(cookies[i].trim().split("=")[1]);
+				}
+			}
 		},
 		
 		onRememberMe: function() {
@@ -24,7 +58,10 @@ sap.ui.define([
 			var inp = this.getView().byId("input").getValue();
 			var pwd = this.getView().byId("password").getValue();
 			
-			if(inp === "user" && pwd === "password") {				
+			if(inp === "aaaaa" && pwd === "password") {				
+				
+				this._saveSSO(inp, pwd);
+				
 				this.getView().byId("app2").to(this.getView().byId("searchPage"));
 			} else {
 				sap.m.MessageToast.show("Please check your SSO id and Password", {
@@ -32,6 +69,11 @@ sap.ui.define([
 				});
 			}
 		},
+		
+		_saveSSO: function(inp, pwd) {
+			document.cookie = "sso_id=" + inp;
+			document.cookie = "sso_id_pwd=" + pwd;
+		}, 
 		
 		reset: function() {
 			this.getView().byId("input").setValue("");
@@ -65,6 +107,33 @@ sap.ui.define([
 			var oList = this.getView().byId("searchResult");
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
+			
+			/*
+			var scr = document.createElement("script");
+			scr.src = "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json&callback=abc(data)";
+			
+			document.getElementsByTagName('head')[0].appendChild(scr);
+
+			var oController = this;
+			
+			$.ajax({
+				url: "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json",
+				method: "get",
+				dataType: "jsonp",
+				success: function(data, status, xhr) {
+					console.log("data: " + data);
+					
+					var oList = oController.getView().byId("searchResult");
+					
+					var searchModel = new sap.ui.model.json.JSONModel(data);
+					oList.setModel(searchModel);
+					oList.setVisible(true);
+				},
+				error: function(xhr, error, status) {
+					console.log("error: " + error + " | status: " + status);
+				}
+			});
+			*/
 		},
 		
 		onNavigateFilter: function() {
@@ -74,9 +143,7 @@ sap.ui.define([
 		updateResults: function(oEvent) {
 			var aFilter = [];
 			var filter;
-			
-			this.getView().byId("panel").setExpanded(false);
-			
+						
 			if(this.getView().byId("searchField").getValue() && this.getView().byId("searchField").getValue().length > 0) {
 				filter = new sap.ui.model.Filter("empName", sap.ui.model.FilterOperator.Contains, this.getView().byId("searchField").getValue());
 				aFilter.push(filter);
@@ -105,16 +172,13 @@ sap.ui.define([
 		},
 		
 		cancel: function(oEvent) {
-			this.getView().byId("cmbBox").setValue("");
-			this.getView().byId("groupsCB").setValue("");
-			this.getView().byId("businessListItem").setValue("");
-			
 			this.getView().byId("app2").to(this.getView().byId("searchPage"));
 		},
 		
 		onItemSelect: function(oEvent) {
 			var oList = this.getView().byId("searchResult");
 			var businessList = this.byId("businessListItem");
+			businessList.setEnabled(true);
 		    var oTemplate = new sap.ui.core.ListItem({ key : "{business}", text : "{business}"})
 		    businessList.bindItems(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/businesses", oTemplate);
 		},
@@ -125,6 +189,8 @@ sap.ui.define([
 			this.getView().byId("cmbBox").setValue("");
 			this.getView().byId("groupsCB").setValue("");
 			this.getView().byId("businessListItem").setValue("");
+			
+			this.getView().byId("businessListItem").setEnabled(false);
 			
 			this.getView().byId("searchResult").setVisible(false);
 			
@@ -137,6 +203,7 @@ sap.ui.define([
 		
 		resetGroup: function() {
 			this.getView().byId("groupsCB").setValue("");
+			businessList.setEnabled(false);
 		},
 		
 		resetBusiness: function() {
