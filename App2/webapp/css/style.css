@@ -1,3 +1,13 @@
+.appTitle {
+	background-color: #3D375C !important;
+}
+
+.appTitle > * {
+	color: white !important;
+	font-family: verdana;
+	font-weight: bold;
+}
+
 a.linkHome.sapMLnk.sapMLnkMaxWidth {
 	color: rgb(141, 141, 141) !important;
 	font-size: 12px !important;
@@ -11,6 +21,7 @@ a.linkHome.sapMLnk.sapMLnkMaxWidth {
 
 .footer {
 	background-color: #000 !important;
+	display: none !important;
 }
 
 .nbcuHome {

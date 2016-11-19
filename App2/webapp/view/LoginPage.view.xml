@@ -11,13 +11,24 @@
 		<pages>
 			<Page title="Login Page" showHeader="true" id="loginPage">
 				<customHeader>
-					<Bar>
-						<contentMiddle>
+					<Toolbar>
+						<content>
+							<ToolbarSpacer />
 							<!-- To be replaced with new image file -->
-							<Image src="images/nbcu.png"></Image>
-						</contentMiddle>
-					</Bar>
-				</customHeader>	
+							<Image src="images/nbcu.png" />
+							<ToolbarSpacer />
+						</content>
+					</Toolbar>
+				</customHeader>
+				<subHeader>
+					<Toolbar class="appTitle">
+						<content>
+							<ToolbarSpacer />
+							<Title text="Employee Directory Search" />
+							<ToolbarSpacer />
+						</content>
+					</Toolbar>
+				</subHeader>
 				<content>
 					<VBox class="sapUiSmallMargin">
 						<f:SimpleForm id="SimpleFormChange"
@@ -125,7 +136,7 @@
 						columnsM="2"
 						class="editableForm">
 						
-						<l:Grid class="sapUiSmallMarginTop"
+						<l:Grid class="sapUiSmallMarginTop sapUiNoContentPadding"
 							defaultSpan="L12 M12 S12" 
 							emptySpanL="0"
 							emptySpanM="0"
@@ -153,20 +164,27 @@
 							</Button>
 						</l:Grid>
 					</f:SimpleForm>
-					<Button icon="sap-icon://filter" text="Filters" press="onNavigateFilter" class="sapUiSmallMarginBegin filterButton" type="Transparent"></Button>
+					<Button id="btnFilter" 
+						visible="false" 
+						icon="sap-icon://filter" 
+						text="Filters" 
+						press="onNavigateFilter" 
+						class="sapUiSmallMarginBegin filterButton" 
+						type="Transparent" />
+						
 					<List id="searchResult"
 						visible="false"
-						items="{/results}"
-						headerText="Employee Details"
+						items="{/response/docs}"
+						headerText="Results"
 						growing="true"
 						growingThreshold="10"
-						noDataText="No search result found."
+						noDataText="No Search Results Found"
 						class="sapUiTinyMarginBottom">
 						
 						<items>
 							<CustomListItem class="results">
 								<HBox>
-									<Image height="5rem" width="5rem" src="{empPic}" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+									<Image height="5rem" width="5rem" src="/photo/images/person/temp/{path: 'id'}.jpg" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
 									<VBox>
 										<Label text="{path: 'firstname'} {path: 'lastname'}" class="sapUiSmallMarginBegin sapUiSmallMarginTop lblName" design="Bold"/>
 										<Label text="{designation}" class="sapUiSmallMarginBegin lblDesignation" />
@@ -204,10 +222,10 @@
 							id="groupsCB"
 							selectionChange="onItemSelect"
 							items="{
-								path: '/groups'
+								path: '/data'
 							}">
 							
-							<core:Item key="{group}" text="{group}" />	
+							<core:Item key="{tid}" text="{name}" />	
 							<layoutData>
 	  					    	<l:GridData span="L10 M10 S10"/>
 	   					 	</layoutData>
@@ -236,7 +254,7 @@
 								path:'/'
 							}">
 							
-							<core:Item text="{business}" key="{business}" />	
+							<core:Item text="{name}" key="{tid}" />	
 							<layoutData>
 	  					    	<l:GridData span="L10 M10 S10"/>
 	   					 	</layoutData>
@@ -261,10 +279,10 @@
 						
 						<ComboBox width="100%" id="cmbBox"
 						items="{
-							path:'/locations'
+							path:'/data'
 						}">
 							
-							<core:Item text="{location}" key="{key}" />	
+							<core:Item text="{name}" key="{tid}" />	
 							<layoutData>
 	  					    	<l:GridData span="L10 M10 S10"/>
 	   					 	</layoutData>

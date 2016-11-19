@@ -6,36 +6,19 @@ sap.ui.define([
 
 	return Controller.extend("com.nbcu.controller.LoginPage", {
 		_getData: function() {
-			$.ajax({
-				url: "http://dev.nbcunow.com/api/v1/taxonomy/idm_location",
-				method: "get",
-				dataType: "jsonp",
-				success: function(data, status, xhr) {
-					console.log("data: " + data);
-				},
-				error: function(xhr, status) {
-					console.log("error: " + status);
-				}
-			});
+			jQuery.sap.log.info("");
 		},
 		
 		onInit: function() {
 			var controlData = {
-				remember: false,
-				location: "",
-				group: "",
-				business: ""
+				remember: false
 			};
 			
 			var controlModel = new sap.ui.model.json.JSONModel(controlData);
 			this.getView().setModel(controlModel);
-			
-			this._getData();
 		},
 		
 		onRememberMe: function() {
-			console.log("eere");
-			
 			if(this._getProperty("remember")) {
 				this._setProperty("remember", false);
 			} else {
@@ -56,6 +39,7 @@ sap.ui.define([
 		},
 		
 		onAfterRendering: function() {
+			var me = this;
 			var copyrightLabel = this.getView().byId("copyrightLabel");
 			copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
 			
@@ -77,9 +61,29 @@ sap.ui.define([
 			oModel.loadData("mockdata/data.json");
 			this.getView().byId("searchResult").setModel(oModel);
 			
-			var oLocModel = new sap.ui.model.json.JSONModel();
-			oLocModel.loadData("mockdata/locations.json");
-			this.getView().byId("cmbBox").setModel(oLocModel);
+			$.ajax({
+				url: "/filter/api/v2/taxonomy/idm_location",
+				method: "get",
+				success: function(data, status, xhr) {
+					var oLocModel = new sap.ui.model.json.JSONModel(data);
+					me.getView().byId("cmbBox").setModel(oLocModel);
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while getting locations. Status: " + status + " | Error: " + error);
+				}
+			});
+			
+			$.ajax({
+				url: "/filter/api/v2/taxonomy/idm_businesssegment",
+				method: "get",
+				success: function(data, status, xhr) {
+					var oLocModel = new sap.ui.model.json.JSONModel(data);
+					me.getView().byId("groupsCB").setModel(oLocModel);
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while getting business segments. Status: " + status + " | Error: " + error);
+				}
+			});
 			
 			var oGrpModel = new sap.ui.model.json.JSONModel();
 			oGrpModel.loadData("mockdata/groups.json");
@@ -90,10 +94,7 @@ sap.ui.define([
 			var inp = this.getView().byId("input").getValue();
 			var pwd = this.getView().byId("password").getValue();
 			
-			if(inp === "aaaaa" && pwd === "password") {				
-				
-				console.log(this._getProperty("remember"));
-				
+			if(inp === "206505549" && pwd === "password") {				
 				if(this._getProperty("remember")) {
 					this._saveSSO(inp, pwd);					
 				} else {
@@ -109,15 +110,11 @@ sap.ui.define([
 		},
 		
 		_saveSSO: function(inp, pwd) {
-			console.log("saving");
-			
 			document.cookie = "sso_id=" + inp;
 			document.cookie = "sso_id_pwd=" + pwd;
 		},
 		
 		_removeSSO: function() {
-			console.log("removing");
-			
 			document.cookie = "sso_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 			document.cookie = "sso_id_pwd=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
 		},
@@ -140,57 +137,28 @@ sap.ui.define([
 				return;
 			}
 			
-			var oController = this;	
-			
-			var aFilter = [];
-			
-			if (sQuery && sQuery.length > 0) {
-				var filter1 = new sap.ui.model.Filter("firstname", sap.ui.model.FilterOperator.EQ, sQuery);
-				//var filter2 = new sap.ui.model.Filter("lastname", sap.ui.model.FilterOperator.Contains, sQuery);
-				
-				aFilter.push(filter1);
-				//aFilter.push(filter2);
-			}
-			
-			var oList = this.getView().byId("searchResult");
-			var oBinding = oList.getBinding("items");
-			oBinding.filter(aFilter);
-			
-			this.getView().byId("searchResult").setVisible(true);
-
-			/*
-		
-			var scr = document.createElement("script");
-			scr.src = url + "&callback=abc(data)";
-			
-			document.getElementsByTagName('head')[0].appendChild(scr);*/
-
-			/*var url = "http://stg.idmportal.inbcu.com:8080/solr/collection1/select?q=category:worker%20AND%20title:'Saurabh'&wt=json";
+			var me = this;
 			
 			$.ajax({
-				url: url,
+				url: "/searchUser/solr/collection1/select?q=category:worker%20AND%20title:" + sQuery + "&wt=json",
 				method: "get",
-				dataType: "jsonp",
+				dataType: "json",
 				success: function(data, status, xhr) {
-					console.log("data: " + data);
-					
-					var oList = oController.getView().byId("searchResult");
-					
 					var searchModel = new sap.ui.model.json.JSONModel(data);
-					oList.setModel(searchModel);
-					oList.setVisible(true);
+					me.getView().byId("searchResult").setModel(searchModel);
+					me.getView().byId("searchResult").setVisible(true);
+					
+					if(data.response.numFound > 1) {
+						me.getView().byId("btnFilter").setVisible(true);						
+					}
 				},
-				error: function(xhr, error, status) {
-					console.log("error: " + error + " | status: " + status);
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
 				}
-			});*/
+			});
 		},
 		
 		onNavigateFilter: function() {
-			this.getView().byId("cmbBox").setValue(this._getProperty("location"));
-			this.getView().byId("groupsCB").setValue(this._getProperty("group"));
-			this.getView().byId("businessListItem").setValue(this._getProperty("business"));
-			
 			this.getView().byId("app2").to(this.getView().byId("filterPage"));
 		},
 		
@@ -231,7 +199,7 @@ sap.ui.define([
 		
 		onItemSelect: function(oEvent) {
 			var businessList = this.getView().byId("businessListItem");
-		    var bus = this.getView().byId("groupsCB").getModel().getProperty(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/businesses");
+		    var bus = this.getView().byId("groupsCB").getModel().getProperty(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/children");
 		    var busModel = new sap.ui.model.json.JSONModel(bus);
 		    businessList.setModel(busModel);
 		    businessList.setEnabled(true);
@@ -245,25 +213,23 @@ sap.ui.define([
 			this.getView().byId("businessListItem").setValue("");
 			
 			this.getView().byId("businessListItem").setEnabled(false);
-			
 			this.getView().byId("searchResult").setVisible(false);
-			
 			this.getView().byId("searchField").focus();
+			
+			this.getView().byId("btnFilter").setVisible(false);
 		},
 		
 		resetLoc: function() {
-			this._setProperty("location", this.getView().byId("cmbBox").getValue());
 			this.getView().byId("cmbBox").setValue("");
 		},
 		
 		resetGroup: function() {
-			this._setProperty("group", this.getView().byId("groupsCB").getValue());
 			this.getView().byId("groupsCB").setSelectedItem(null);
-			this.getView().byId("businessListItem").setEnabled(false);
+			var businessList = this.byId("businessListItem");
+			businessList.setEnabled(false);
 		},
 		
 		resetBusiness: function() {
-			this._setProperty("business", this.getView().byId("businessListItem").getValue());
 			this.getView().byId("businessListItem").setValue("");
 		}
 	});
