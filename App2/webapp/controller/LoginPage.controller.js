@@ -57,10 +57,7 @@ sap.ui.define([
 				}
 			}
 			
-			var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData("mockdata/data.json");
-			this.getView().byId("searchResult").setModel(oModel);
-			
+			/*
 			$.ajax({
 				url: "/filter/api/v2/taxonomy/idm_location",
 				method: "get",
@@ -84,10 +81,41 @@ sap.ui.define([
 					jQuery.sap.log.error("Error while getting business segments. Status: " + status + " | Error: " + error);
 				}
 			});
+			*/
 			
-			var oGrpModel = new sap.ui.model.json.JSONModel();
-			oGrpModel.loadData("mockdata/groups.json");
-			this.getView().byId("groupsCB").setModel(oGrpModel);
+			$.ajax({
+				url: "mockdata/locations.json",
+				method: "get",
+				dataType: "json",
+				success: function(data, status, xhr) {
+					var locModel = new sap.ui.model.json.JSONModel(data);
+					me.getView().byId("cmbBox").setModel(locModel);
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while getting locations. Status: " + status + " | Error: " + error);
+				}
+			});
+			
+			$.ajax({
+				url: "mockdata/business_segments.json",
+				method: "get",
+				dataType: "json",
+				success: function(data, status, xhr) {
+					var okGroups = [];
+					
+					jQuery.each(data.data, function(index, grp){
+						if(grp.children.length !== 0) {
+							okGroups.push(grp);
+						}
+					});
+					
+					var grpModel = new sap.ui.model.json.JSONModel(okGroups);
+					me.getView().byId("groupsCB").setModel(grpModel);
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while getting business segments. Status: " + status + " | Error: " + error);
+				}
+			});
 		},		
 		
 		submit: function() {
@@ -140,7 +168,7 @@ sap.ui.define([
 			var me = this;
 			
 			$.ajax({
-				url: "/searchUser/solr/collection1/select?q=category:worker%20AND%20title:" + sQuery + "&wt=json",
+				url: "mockdata/data.json",
 				method: "get",
 				dataType: "json",
 				success: function(data, status, xhr) {
@@ -156,6 +184,24 @@ sap.ui.define([
 					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
 				}
 			});
+			
+			/*$.ajax({
+				url: "/searchUser/solr/collection1/select?q=category:worker%20AND%20title:" + sQuery + "&wt=json",
+				method: "get",
+				dataType: "json",
+				success: function(data, status, xhr) {
+					var searchModel = new sap.ui.model.json.JSONModel(data);
+					me.getView().byId("searchResult").setModel(searchModel);
+					me.getView().byId("searchResult").setVisible(true);
+					
+					if(data.response.numFound > 1) {
+						me.getView().byId("btnFilter").setVisible(true);						
+					}
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
+				}
+			});*/
 		},
 		
 		onNavigateFilter: function() {

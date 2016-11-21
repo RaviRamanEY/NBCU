@@ -30,36 +30,45 @@
 					</Toolbar>
 				</subHeader>
 				<content>
-					<VBox class="sapUiSmallMargin">
-						<f:SimpleForm id="SimpleFormChange"
-							minWidth="1024"
-							maxContainerCols="2"
-							editable="true"
-							layout="ResponsiveGridLayout"
-							title=""
-							labelSpanL="3"
-							labelSpanM="3"
-							emptySpanL="4"
-							emptySpanM="4"
-							columnsL="1"
-							columnsM="1"
-							class="editableForm">
-						
-							<Input id="input" value="" placeholder="Enter your SSO ID"></Input>		
-							<Input id="password" value="" type="Password" placeholder="Enter your password" submit="submit"/>
-							<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank"/>
-						</f:SimpleForm>
+					<VBox class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd">
+ 							<l:Grid class="sapUiSmallMarginTop"
+							width="100%"
+							defaultSpan="L3 M6 S12"
+							position="Center"
+							hSpacing="0.5"
+							vSpacing="0.5"
+						 	minContainerCols="1"
+						 	columnsS="1">
+							
+							<Input id="input" value="" placeholder="Enter your SSO ID">
+								<layoutData>
+		  					    	<l:GridData span="L12 M12 S12"/>
+		   					 	</layoutData>
+		   					 </Input>
+
+ 							<Input id="password" value="" type="Password" placeholder="Enter your password" submit="submit">
+								<layoutData>
+		  					    	<l:GridData span="L12 M12 S12"/>
+		   					 	</layoutData>
+ 							</Input>
+ 							
+			 				<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank">
+								<layoutData>
+		  					    	<l:GridData span="L12 M12 S12"/>
+		   					 	</layoutData>
+			 				</Link>
+						</l:Grid>
 					</VBox>
-					<Toolbar>   
-						<CheckBox id="checkRemember" select="onRememberMe" selected="{= ${/remember} === true}"></CheckBox>
-						<Label text="Remember my Id"></Label>
-						<ToolbarSpacer/>
-						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd"/>			
+					<Toolbar class="sapUiTinyMarginBegin sapUiTinyMarginEnd">
+						<CheckBox id="checkRemember" select="onRememberMe" selected="{= ${/remember} === true}" />
+						<Label text="Remember me" />
+						<ToolbarSpacer />
+						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd" />
 					</Toolbar>
 					<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
 						<headerToolbar>
 							<Toolbar>
-								<Title text="Links" />			
+								<Title text="Links" />
 							</Toolbar>
 						</headerToolbar>
 						<content>
@@ -75,15 +84,15 @@
  							<Label text="NBCUniversal" class="nbcuHome sapUiSmallMarginBegin sapUiSmallMarginBottom sapUiSmallMarginTop" />
  							
  							<l:Grid class="sapUiSmallMarginTop sapUiSmallMarginBegin"
-							defaultSpan="L12 M12 S12" 
-							emptySpanL="0"
-							emptySpanM="0"
-							emptySpanS="0"
-							hSpacing="0.5"
-						 	columnsL="3"
-						 	columnsM="3"
-						 	minContainerCols="3"
-						 	columnsS="3">		
+								defaultSpan="L12 M12 S12" 
+								emptySpanL="0"
+								emptySpanM="0"
+								emptySpanS="0"
+								hSpacing="0.5"
+							 	columnsL="3"
+							 	columnsM="3"
+							 	minContainerCols="3"
+							 	columnsS="3">		
 							
 							<Link class="linkHome" text="CONTACT US" href="http://www.nbcuniversal.com/contact-us" target="_blank">
 								<layoutData>
@@ -184,11 +193,12 @@
 						<items>
 							<CustomListItem class="results">
 								<HBox>
-									<Image height="5rem" width="5rem" src="/photo/images/person/temp/{path: 'id'}.jpg" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+									<Image height="5rem" width="5rem" src="images/Lou1.png" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
 									<VBox>
 										<Label text="{path: 'firstname'} {path: 'lastname'}" class="sapUiSmallMarginBegin sapUiSmallMarginTop lblName" design="Bold"/>
 										<Label text="{designation}" class="sapUiSmallMarginBegin lblDesignation" />
-										<Label text="{path: 'businesssegment'} {path: 'subbusinesssegment'}" class="sapUiSmallMarginBegin lblBusiness" />
+										<Label text="{path: 'businesssegment'}" class="sapUiSmallMarginBegin lblBusiness" />
+										<Label text="{path: 'subbusinesssegment'}" class="sapUiSmallMarginBegin lblSubBusiness" />
 										<Label text="{workcity}" class="sapUiSmallMarginBegin sapUiSmallMarginBottom lblCity" />
 									</VBox>
 								</HBox>
@@ -201,53 +211,39 @@
 				<customHeader>
 					<Toolbar>
 						<ToolbarSpacer />
-						<Text text="Filters" />
+						<Title text="Filters" level="H3" />
 						<ToolbarSpacer />
 					</Toolbar>
 				</customHeader>
 				<content>
 					<Label text="Group" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
-						defaultSpan="L12 M12 S12" 
-						emptySpanL="0"
-						emptySpanM="0"
-						emptySpanS="0"
-						hSpacing="1"
-					 	columnsL="2"
-					 	columnsM="2"
-					 	minContainerCols="2"
-					 	columnsS="2">
+						defaultSpan="L12 M12 S12"
+						hSpacing="1">
 						
 						<ComboBox width="100%"
 							id="groupsCB"
 							selectionChange="onItemSelect"
 							items="{
-								path: '/data'
+								path: '/'
 							}">
 							
 							<core:Item key="{tid}" text="{name}" />	
 							<layoutData>
-	  					    	<l:GridData span="L10 M10 S10"/>
+	  					    	<l:GridData span="L11 M11 S10"/>
 	   					 	</layoutData>
 						</ComboBox>			
 						<Button icon="sap-icon://clear-filter" width="20%" press="resetGroup" >
 							<layoutData>
-	    				  		<l:GridData span="L2 M2 S2"/>
+	    				  		<l:GridData span="L1 M1 S2"/>
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
 					<Label text="Business" design="Bold" class="sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12"
-						emptySpanL="0"
-						emptySpanM="0"
-						emptySpanS="0"
 						vSpacing="0"
-						hSpacing="1"
-					 	columnsL="2"
-					 	columnsM="2"
-					 	minContainerCols="2"
-					 	columnsS="2">
+						hSpacing="1">
 						
 						<ComboBox width="100%" id="businessListItem" enabled="false"
 								items="{
@@ -256,40 +252,33 @@
 							
 							<core:Item text="{name}" key="{tid}" />	
 							<layoutData>
-	  					    	<l:GridData span="L10 M10 S10"/>
+	  					    	<l:GridData span="L11 M11 S10"/>
 	   					 	</layoutData>
 						</ComboBox>			
 						<Button icon="sap-icon://clear-filter" width="20%" press="resetBusiness">
 							<layoutData>
-	    				  		<l:GridData span="L2 M2 S2"/>
+	    				  		<l:GridData span="L1 M1 S2"/>
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
 					<Label text="Location" design="Bold" textAlign="center" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12" 
-						emptySpanL="0"
-						emptySpanM="0"
-						emptySpanS="0"
-						hSpacing="1"
-						columnsL="2"
-						columnsM="2"
-						minContainerCols="2"
-						columnsS="2">
+						hSpacing="1">
 						
 						<ComboBox width="100%" id="cmbBox"
-						items="{
-							path:'/data'
-						}">
+							items="{
+								path:'/data'
+							}">
 							
 							<core:Item text="{name}" key="{tid}" />	
 							<layoutData>
-	  					    	<l:GridData span="L10 M10 S10"/>
+	  					    	<l:GridData span="L11 M11 S10"/>
 	   					 	</layoutData>
 						</ComboBox>			
 						<Button icon="sap-icon://clear-filter"  press="resetLoc" width="20%" >
 							<layoutData>
-	    						<l:GridData span="L2 M2 S2"/>
+	    						<l:GridData span="L1 M1 S2"/>
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
