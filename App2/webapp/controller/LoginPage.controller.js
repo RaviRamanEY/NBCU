@@ -40,8 +40,8 @@ sap.ui.define([
 		
 		onAfterRendering: function() {
 			var me = this;
-			var copyrightLabel = this.getView().byId("copyrightLabel");
-			copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
+	//		var copyrightLabel = this.getView().byId("copyrightLabel");
+	//		copyrightLabel.setText("\xA9" + " 2016 NBCUNIVERSAL MEDIA, LLC.");
 			
 			var cookieString = document.cookie;
 			var cookies = cookieString.split(";");
@@ -57,11 +57,37 @@ sap.ui.define([
 				}
 			}
 			
-			/*
+		//	var oModel = new sap.ui.model.json.JSONModel();
+		//	oModel.loadData("mockdata/data.json");
+		//	this.getView().byId("searchResult").setModel(oModel);
+			//
+			//var url = "/searchUser/solr/collection1/select?q=category:worker&wt=json&rows=10000";
+			var url = "mockdata/data.json";
+			
 			$.ajax({
-				url: "/filter/api/v2/taxonomy/idm_location",
+				url: url,
+				method: "get",
+				dataType: "json",
+				success: function(data, status, xhr) {
+					var searchModel = new sap.ui.model.json.JSONModel(data);
+					me.getView().byId("searchResult").setModel(searchModel);
+					me.getView().byId("searchResult").setVisible(true);
+					
+					if(data.response.numFound > 1) {
+					/*	me.getView().byId("clearResult").setVisible(true);*/
+						me.getView().byId("btnFilter").setVisible(true);						
+					}
+				},
+				error: function(xhr, status, error) {
+					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
+				}
+			});
+			$.ajax({
+				//url: "/filter/api/v2/taxonomy/idm_location",
+				url: "mockdata/loations.json",
 				method: "get",
 				success: function(data, status, xhr) {
+					data.data.unshift({"name":"All"});
 					var oLocModel = new sap.ui.model.json.JSONModel(data);
 					me.getView().byId("cmbBox").setModel(oLocModel);
 				},
@@ -71,46 +97,45 @@ sap.ui.define([
 			});
 			
 			$.ajax({
-				url: "/filter/api/v2/taxonomy/idm_businesssegment",
-				method: "get",
-				success: function(data, status, xhr) {
-					var oLocModel = new sap.ui.model.json.JSONModel(data);
-					me.getView().byId("groupsCB").setModel(oLocModel);
-				},
-				error: function(xhr, status, error) {
-					jQuery.sap.log.error("Error while getting business segments. Status: " + status + " | Error: " + error);
-				}
-			});
-			*/
-			
-			$.ajax({
-				url: "mockdata/locations.json",
-				method: "get",
-				dataType: "json",
-				success: function(data, status, xhr) {
-					var locModel = new sap.ui.model.json.JSONModel(data);
-					me.getView().byId("cmbBox").setModel(locModel);
-				},
-				error: function(xhr, status, error) {
-					jQuery.sap.log.error("Error while getting locations. Status: " + status + " | Error: " + error);
-				}
-			});
-			
-			$.ajax({
+				//url: "/filter/api/v2/taxonomy/idm_businesssegment",
 				url: "mockdata/business_segments.json",
 				method: "get",
-				dataType: "json",
 				success: function(data, status, xhr) {
 					var okGroups = [];
+					data.data.unshift({
+						"name":"All",
+						"tid": "All",
+						"children": [
+							{
+								"name":"All",
+								"tid": "All"
+							}	
+						]
+					});
 					
 					jQuery.each(data.data, function(index, grp){
-						if(grp.children.length !== 0) {
-							okGroups.push(grp);
+					/*	if(grp.children.length !== 0 && grp.name !== "All") {
+							grp.children.unshift({
+								"name":"All",
+								"tid":"All"
+							});
+						}*/
+						
+						if(grp.children.length !== 0 ){
+							if(grp.name ==="All"){
+								okGroups.push(grp);
+							}else{
+								grp.children.unshift({
+									"name":"All",
+									"tid":"All"
+								});
+								okGroups.push(grp);
+							}
 						}
 					});
 					
-					var grpModel = new sap.ui.model.json.JSONModel(okGroups);
-					me.getView().byId("groupsCB").setModel(grpModel);
+					var oGrpModel = new sap.ui.model.json.JSONModel(okGroups);
+					me.getView().byId("groupsCB").setModel(oGrpModel);
 				},
 				error: function(xhr, status, error) {
 					jQuery.sap.log.error("Error while getting business segments. Status: " + status + " | Error: " + error);
@@ -154,21 +179,27 @@ sap.ui.define([
 		
 		onSearch: function() {
 			var sQuery = this.getView().byId("searchField").getValue();
-			
-			if(sQuery === "") {
-				MessageToast.show("Please enter a search criteria.");
+			this.getView().byId("btnFilter").setVisible(false);
+		/*	this.getView().byId("clearResult").setVisible(false);*/
+			/*if(sQuery === "") {
+				MessageToast.show("Please enter employee name");
 				return;
-			}
-			
+			}*/
 			if(sQuery.indexOf("*") > -1 || sQuery.indexOf("?") > -1) {
 				MessageToast.show("Wildcards (*, ?) are not supported. Please remove wildcards and try again.");
 				return;
 			}
-			
+			this.getView().byId("searchId").setText("Searching for" +sQuery);
 			var me = this;
+			var url="";
 			
+			if(sQuery === ""){
+				url = "/searchUser/solr/collection1/select?q=category:worker&wt=json&rows=200";
+			}else{
+				url= "/searchUser/solr/collection1/select?q=category:worker%20AND%20title:" + sQuery + "&wt=json&rows=200";
+			}
 			$.ajax({
-				url: "mockdata/data.json",
+				url: url,
 				method: "get",
 				dataType: "json",
 				success: function(data, status, xhr) {
@@ -177,6 +208,7 @@ sap.ui.define([
 					me.getView().byId("searchResult").setVisible(true);
 					
 					if(data.response.numFound > 1) {
+					/*	me.getView().byId("clearResult").setVisible(true);*/
 						me.getView().byId("btnFilter").setVisible(true);						
 					}
 				},
@@ -184,24 +216,18 @@ sap.ui.define([
 					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
 				}
 			});
-			
-			/*$.ajax({
-				url: "/searchUser/solr/collection1/select?q=category:worker%20AND%20title:" + sQuery + "&wt=json",
-				method: "get",
-				dataType: "json",
-				success: function(data, status, xhr) {
-					var searchModel = new sap.ui.model.json.JSONModel(data);
-					me.getView().byId("searchResult").setModel(searchModel);
-					me.getView().byId("searchResult").setVisible(true);
-					
-					if(data.response.numFound > 1) {
-						me.getView().byId("btnFilter").setVisible(true);						
-					}
-				},
-				error: function(xhr, status, error) {
-					jQuery.sap.log.error("Error while searching. Status: " + status + " | Error: " + error);
+		},
+		
+		dataLoaded: function() {
+			if(this.getView().byId("searchResult").getItems().length > 15) {
+				if(this.getView().byId("btnGoToTop")) {
+					this.getView().byId("btnGoToTop").setVisible(true);
 				}
-			});*/
+			}
+		},
+		
+		goToTop: function() {
+			this.getView().byId("searchField").focus();
 		},
 		
 		onNavigateFilter: function() {
@@ -211,23 +237,18 @@ sap.ui.define([
 		updateResults: function(oEvent) {
 			var aFilter = [];
 			var filter;
-						
-			if(this.getView().byId("searchField").getValue() && this.getView().byId("searchField").getValue().length > 0) {
-				filter = new sap.ui.model.Filter("firstname", sap.ui.model.FilterOperator.Contains, this.getView().byId("searchField").getValue());
+
+			if(this.getView().byId("cmbBox").getValue() && this.getView().byId("cmbBox").getValue().length >  0 && (this.getView().byId("cmbBox").getValue().split(',')[0] !== "All")){
+				filter = new sap.ui.model.Filter("workcity", sap.ui.model.FilterOperator.Contains, this.getView().byId("cmbBox").getValue().split(',')[0]);
 				aFilter.push(filter);
 			}
 
-			if(this.getView().byId("cmbBox").getValue() && this.getView().byId("cmbBox").getValue().length >  0){
-				filter = new sap.ui.model.Filter("workcity", sap.ui.model.FilterOperator.Contains, this.getView().byId("cmbBox").getValue());
-				aFilter.push(filter);
-			}
-
-			if(this.getView().byId("groupsCB").getValue() && this.getView().byId("groupsCB").getValue().length >  0){
+			if(this.getView().byId("groupsCB").getValue() && this.getView().byId("groupsCB").getValue().length >  0 &&  this.getView().byId("groupsCB").getValue()!== "All" ){
 				filter = new sap.ui.model.Filter("businesssegment", sap.ui.model.FilterOperator.Contains, this.getView().byId("groupsCB").getValue());
 				aFilter.push(filter);
 			}
 
-			if(this.getView().byId("businessListItem").getValue() && this.getView().byId("businessListItem").getValue().length > 0){
+			if(this.getView().byId("businessListItem").getValue() && this.getView().byId("businessListItem").getValue().length > 0 && this.getView().byId("businessListItem").getValue()!== "All"){
 				filter = new sap.ui.model.Filter("subbusinesssegment", sap.ui.model.FilterOperator.Contains, this.getView().byId("businessListItem").getValue());
 				aFilter.push(filter);
 			}
@@ -248,6 +269,8 @@ sap.ui.define([
 		    var bus = this.getView().byId("groupsCB").getModel().getProperty(oEvent.getParameter("selectedItem").getBindingContext().getPath() + "/children");
 		    var busModel = new sap.ui.model.json.JSONModel(bus);
 		    businessList.setModel(busModel);
+		    this.getView().byId("businessListItem").setValue("");
+			this.getView().byId("businessListItem").setSelectedItem(null);
 		    businessList.setEnabled(true);
 		},
 		
@@ -263,6 +286,7 @@ sap.ui.define([
 			this.getView().byId("searchField").focus();
 			
 			this.getView().byId("btnFilter").setVisible(false);
+			this.getView().byId("btnGoToTop").setVisible(false);
 		},
 		
 		resetLoc: function() {
@@ -271,12 +295,34 @@ sap.ui.define([
 		
 		resetGroup: function() {
 			this.getView().byId("groupsCB").setSelectedItem(null);
+			this.getView().byId("businessListItem").setValue("");
+			this.getView().byId("businessListItem").setSelectedItem(null);
 			var businessList = this.byId("businessListItem");
 			businessList.setEnabled(false);
 		},
 		
 		resetBusiness: function() {
 			this.getView().byId("businessListItem").setValue("");
+		},
+		
+		imageLoad : function(oEvent){
+			var img = oEvent.getSource();
+			img.setSrc("images/default_user.png");
+		},
+		
+		profileSelected: function(oEvent) {
+			var bindingPath = oEvent.getParameters().listItem.getBindingContext().getPath();
+			var model = oEvent.getSource().getModel();
+			
+			var profModel = new sap.ui.model.json.JSONModel(model.getProperty(bindingPath));
+	
+			this.getView().byId("profilePage").setModel(profModel);
+			this.getView().byId("app2").to(this.getView().byId("profilePage"));
+		},
+		
+		profileOK: function() {
+			this.getView().byId("app2").to(this.getView().byId("searchPage"));
+			this.getView().byId("searchResult").setSelectedItemById("");
 		}
 	});
 });

@@ -9,13 +9,13 @@
 	
 	<App id="app2">
 		<pages>
-			<Page title="Login Page" showHeader="true" id="loginPage">
+			<Page id="loginPage">
 				<customHeader>
 					<Toolbar>
 						<content>
 							<ToolbarSpacer />
 							<!-- To be replaced with new image file -->
-							<Image src="images/nbcu.png" />
+							<Image src="images/NBCU_Logo.svg" height="70%" width="50%" />
 							<ToolbarSpacer />
 						</content>
 					</Toolbar>
@@ -78,7 +78,7 @@
 						</content>
 					</Panel>
 				</content>
-			 	<footer>
+			 <!--	<footer>
 		 			<Toolbar height="30%" class="footer">
 		 				<l:VerticalLayout width="100%">
  							<Label text="NBCUniversal" class="nbcuHome sapUiSmallMarginBegin sapUiSmallMarginBottom sapUiSmallMarginTop" />
@@ -119,13 +119,13 @@
 			 				<Text text="2016 Copyright NBCUniversal" id="copyrightLabel" class="copyrightLabel sapUiSmallMarginBegin sapUiSmallMarginTop" />
 			 			</l:VerticalLayout>
 		 			</Toolbar>
-				</footer>
+				</footer>-->
 			</Page>
 			<Page title="Search Page" id="searchPage">		
 				<customHeader>
-					<Bar>
+					<Bar class="header">
 						<contentMiddle>			
-							<Image src="images/nbcu.png" />
+							<Image src="images/NBCU_Logo.svg"  height="70%" width="50%" />
 						</contentMiddle>
 					</Bar>
 				</customHeader>
@@ -156,7 +156,7 @@
 						 	minContainerCols="3"
 						 	columnsS="3">		
 							
-							<Input id="searchField" width="100%" placeholder="Enter search criteria" submit="onSearch">
+							<Input id="searchField" width="100%" placeholder="Enter Employee Name" submit="onSearch">
 								<layoutData>
 		  					    	<l:GridData span="L12 M12 S12"/>
 		   					 	</layoutData>
@@ -166,34 +166,43 @@
 		    				  		<l:GridData span="L4 M4 S4"/>
 		   					 	</layoutData>
 							</Button>
-							<Button icon="sap-icon://decline" text="Clear Search Results" press="resetSearch">
+						<!--	<Button icon="sap-icon://decline" text="Clear Search Results" press="resetSearch" visible="false" id="clearResult">
 								<layoutData>
 		    				  		<l:GridData span="L7 M7 S7"/>
 		    					</layoutData>
-							</Button>
+							</Button>-->
 						</l:Grid>
 					</f:SimpleForm>
-					<Button id="btnFilter" 
-						visible="false" 
-						icon="sap-icon://filter" 
-						text="Filters" 
-						press="onNavigateFilter" 
-						class="sapUiSmallMarginBegin filterButton" 
-						type="Transparent" />
 						
 					<List id="searchResult"
 						visible="false"
 						items="{/response/docs}"
 						headerText="Results"
 						growing="true"
+						mode="SingleSelectMaster"
 						growingThreshold="10"
 						noDataText="No Search Results Found"
-						class="sapUiTinyMarginBottom">
-						
+						selectionChange="profileSelected"
+						class="sapUiTinyMarginBottom"
+						updateFinished="dataLoaded">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Results" level="H3" />
+								<ToolbarSpacer />
+								<core:Icon id="btnFilter" 
+									visible="false" 
+									src="sap-icon://filter" 
+									press="onNavigateFilter"
+									color="Neutral"
+									size="2rem"
+									class="sapUiSmallMarginBegin sapUiSmallMarginEnd filterButton" />
+							</Toolbar>
+						</headerToolbar>
 						<items>
 							<CustomListItem class="results">
 								<HBox>
-									<Image height="5rem" width="5rem" src="images/Lou1.png" class="sapUiSmallMarginBegin sapUiSmallMarginTop" />
+									<Image height="5rem" width="5rem" src="/photo/images/person/temp/{path: 'id'}.jpg" class="sapUiSmallMarginBegin sapUiSmallMarginTop empPic" error ="imageLoad"/>
+									<!-- <Image height="5rem" width="5rem" src="images/Lou1.png" class="sapUiSmallMarginBegin sapUiSmallMarginTop" /> -->
 									<VBox>
 										<Label text="{path: 'firstname'} {path: 'lastname'}" class="sapUiSmallMarginBegin sapUiSmallMarginTop lblName" design="Bold"/>
 										<Label text="{designation}" class="sapUiSmallMarginBegin lblDesignation" />
@@ -205,18 +214,52 @@
 							</CustomListItem>
 						</items>
 					</List>
+					<core:Icon size="2rem" id="btnGoToTop" visible="false" class="floatingButton" src="sap-icon://back-to-top" press="goToTop" />
 				</content>
 			</Page>
 			<Page id="filterPage" showHeader="true">
-				<customHeader>
-					<Toolbar>
-						<ToolbarSpacer />
-						<Title text="Filters" level="H3" />
-						<ToolbarSpacer />
-					</Toolbar>
-				</customHeader>
+				<!--<customHeader>
+					<Bar>
+						<contentMiddle>			
+							<Image src="images/nbcu.png" />
+						</contentMiddle>
+					</Bar>
+				</customHeader>-->
+				<headerContent>
+					<Bar>
+						<contentMiddle>			
+							<Image src="images/NBCU_Logo.svg" height="70%" width="50%" />
+						</contentMiddle>
+					</Bar>
+				</headerContent>
+					<subHeader>
+						<Bar>
+						<contentLeft>
+							<Text text="Searching for" id="searchId"></Text>
+						</contentLeft>
+						</Bar>
+					</subHeader>
+			<subHeader>
+			</subHeader>
 				<content>
-					<Label text="Group" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
+					<VBox height="4%">
+						
+					</VBox>
+					<Toolbar class="toolbar">
+							<Bar class="toolbar">
+					<contentLeft class="toolbar">
+						<Button text="Back" icon="sap-icon://nav-back" press="cancel" class="toolbar"></Button>
+					</contentLeft>
+						<contentMiddle class="toolbar">			
+								<Label text ="FILTER BY" design="Bold" class="toolbar"></Label>
+						</contentMiddle>
+					</Bar>
+					
+				</Toolbar>
+				
+					<Text text=""></Text>
+				
+					<Label text="BY GROUP" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12"
 						hSpacing="1">
@@ -239,7 +282,7 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Label text="Business" design="Bold" class="sapUiSmallMarginBegin filterLabelHeading" />
+					<Label text="BY BUSINESS" design="Bold" class="sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12"
 						vSpacing="0"
@@ -261,7 +304,7 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Label text="Location" design="Bold" textAlign="center" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
+					<Label text="BY LOCATION" design="Bold" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12" 
 						hSpacing="1">
@@ -284,10 +327,43 @@
 					</l:Grid>
 					<Toolbar>
 						<ToolbarSpacer />
-						<Button text="Cancel" press="cancel" width="50%" type="Reject" class="sapUiSmallMargin" />
+					<!--	<Button text="Cancel" press="cancel" width="50%" type="Reject" class="sapUiSmallMargin" />-->
 						<Button text="Apply" press="updateResults" width="50%" type="Emphasized" class="sapUiSmallMargin" />
 						<ToolbarSpacer />
 					</Toolbar>
+				</content>
+			</Page>
+			<Page id="profilePage" class="profileContent">
+				<customHeader>
+					<Toolbar>
+						<content>
+							<ToolbarSpacer />
+							<Image src="images/NBCU_Logo.svg" height="70%" width="50%" />
+							<ToolbarSpacer />
+						</content>
+					</Toolbar>
+				</customHeader>
+				<content>
+					<VBox class="sapUiLargeMarginTop">
+						<Toolbar height="7rem">
+							<ToolbarSpacer />
+								<Image height="7rem" width="7rem" src="/photo/images/person/temp/{path: '/id'}.jpg" class="empPic" error ="imageLoad"/>
+							<ToolbarSpacer />
+						</Toolbar>
+						<Toolbar height="auto">
+							<ToolbarSpacer />
+								<VBox>
+									<Text text="{path: '/designation'}, {path: '/businesssegment'}" class="sapUiSmallMarginTop sapUiSmallMarginBegin sapUiSmallMarginEnd profileDesignation"/>
+									<Text text="{path: '/workcity'}" class="sapUiSmallMarginTop profileWorkCity"/>
+								</VBox>
+							<ToolbarSpacer />
+						</Toolbar>
+						<Toolbar>
+							<ToolbarSpacer />
+								<Button text="OK" press="profileOK"/>
+							<ToolbarSpacer />
+						</Toolbar>
+					</VBox>
 				</content>
 			</Page>
 		</pages>

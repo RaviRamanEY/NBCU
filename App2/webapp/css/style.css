@@ -1,10 +1,47 @@
+@FONT-FACE {
+	font-family: Rock-SansBold;
+	src: url("../fonts/Rock-SansBold.woff2");
+}
+
+@FONT-FACE {
+	font-family: Rock-SansItalic;
+	src: url("../fonts/Rock-SansItalic.woff2");
+}
+
+@FONT-FACE {
+	font-family: Rock-SansNormal;
+	src: url("../fonts/Rock-SansNormal.woff2");
+}
+
+.profileContent.sapMNavItem {
+	background-color: #fff !important;
+}
+
+.profileDesignation.sapMText {
+	font-family: Rock-SansBold;
+	font-size: 20px;
+}
+
+.profileWorkCity.sapMText {
+	font-family: Rock-SansNormal;
+	font-size: 15px;
+}
+
+.floatingButton {
+	position: fixed !important;
+	bottom: 20px !important;
+	right: 20px !important;
+	z-index: 10 !important;
+	opacity: 0.4 !important;
+}
+
 .appTitle {
 	background-color: #3D375C !important;
 }
 
 .appTitle > * {
 	color: white !important;
-	font-family: verdana;
+	font-family: Rock-SansBold;
 	font-weight: bold;
 }
 
@@ -21,7 +58,6 @@ a.linkHome.sapMLnk.sapMLnkMaxWidth {
 
 .footer {
 	background-color: #000 !important;
-	display: none !important;
 }
 
 .nbcuHome {
@@ -72,6 +108,10 @@ span.copyrightLabel {
 	background-color: transparent;
 	border-top: transparent;
 	border-bottom: transparent;
+}
+.toolbar{
+	background-color: transparent;
+	box-shadow: none !important;
 }
 .sapUiFormResGrid.sapUiFormBackgrTranslucent>div{
 	background-color: transparent !important;
@@ -140,4 +180,25 @@ header#__bar0{
 
 .sapMPanelExpandableIcon{
 	transform: translateY(-50%) rotate(90deg) !important;
+}
+
+.empPic.sapMImg{
+	border-radius : 50% !important;
+}
+.header{
+	background-color: transparent;
+	border-top: transparent;
+	border-bottom: transparent;
+}
+.header.sapMBarContainer.sapMBarPH{
+	background-color: transparent;
+	border-top: transparent;
+	border-bottom: transparent;
+	style : none !important;
+}
+
+.header.sapMIBar.sapMHeader-CTX {
+    background-color: white !important;
+    background: white !important;
+    height: 4.5rem;
 }
