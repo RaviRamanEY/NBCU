@@ -9,9 +9,9 @@
 	
 	<App id="app2">
 		<pages>
-			<Page title="Login Page" showHeader="true" id="loginPage" class="page" >
-				<customHeader class="header">
-					<Toolbar class="header">
+			<Page id="loginPage">
+				<customHeader>
+					<Toolbar>
 						<content>
 							<ToolbarSpacer />
 							<!-- To be replaced with new image file -->
@@ -24,7 +24,7 @@
 					<Toolbar class="appTitle">
 						<content>
 							<ToolbarSpacer />
-							<Title text="{i18n>titleEmplDirSearch}" />
+							<Title text="Employee Directory Search" />
 							<ToolbarSpacer />
 						</content>
 					</Toolbar>
@@ -40,40 +40,40 @@
 						 	minContainerCols="1"
 						 	columnsS="1">
 							
-							<Input id="input" value="" placeholder="{i18n>inpSSO}">
+							<Input id="input" value="" placeholder="Enter your SSO ID">
 								<layoutData>
 		  					    	<l:GridData span="L12 M12 S12"/>
 		   					 	</layoutData>
 		   					 </Input>
 
- 							<Input id="password" value="" type="Password" placeholder="{i18n>inpPwd}" submit="submit">
+ 							<Input id="password" value="" type="Password" placeholder="Enter your password" submit="submit">
 								<layoutData>
 		  					    	<l:GridData span="L12 M12 S12"/>
 		   					 	</layoutData>
  							</Input>
  							
-			 				<Link text="{i18n>lnkForgotPwd}" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank">
+			 				<Link text="Forgot your Password?" href="https://sso.inbcu.com/nbcucentral/app/reset.jsp" target="_blank">
 								<layoutData>
 		  					    	<l:GridData span="L12 M12 S12"/>
 		   					 	</layoutData>
 			 				</Link>
 						</l:Grid>
 					</VBox>
-					<Toolbar class="sapUiTinyMarginBegin sapUiTinyMarginEnd toolbar">
+					<Toolbar class="sapUiTinyMarginBegin sapUiTinyMarginEnd">
 						<CheckBox id="checkRemember" select="onRememberMe" selected="{= ${/remember} === true}" />
-						<Label text="{i18n>lblRemember}" />
+						<Label text="Remember me" />
 						<ToolbarSpacer />
-						<Button icon="sap-icon://begin" type="Emphasized" text="{i18n>btnSignIn}" press="submit" max-width="40%" class="sapUiSmallMarginEnd" />
+						<Button icon="sap-icon://begin" type="Emphasized" text="Sign In" press="submit" max-width="40%" class="sapUiSmallMarginEnd" />
 					</Toolbar>
-					<Panel expandable="true"  expanded="false" width="65%" class="sapUiResponsiveMargin">
+					<Panel expandable="true" title="Links" expanded="false" width="65%" class="sapUiResponsiveMargin">
 						<headerToolbar>
 							<Toolbar>
-								<Title text="{i18n>titleLinks}" />
+								<Title text="Links" />
 							</Toolbar>
 						</headerToolbar>
 						<content>
 								<l:VerticalLayout>
-										<Link text="{i18n>lnkHelp}" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" target="_blank"/>
+									<Link text="Need Help?" href="https://sso.inbcu.com/nbcucentral/app/faq.jsp" target="_blank"/>
 								</l:VerticalLayout>
 						</content>
 					</Panel>
@@ -121,16 +121,13 @@
 		 			</Toolbar>
 				</footer>-->
 			</Page>
-			<Page id="searchPage" class="searchPage">		
+			<Page title="Search Page" id="searchPage">		
 				<customHeader>
-					<Toolbar class="header">
-						<content>
-							<ToolbarSpacer />
-							<!-- To be replaced with new image file -->
-							<Image src="images/NBCU_Logo.svg" height="70%" width="50%" />
-							<ToolbarSpacer />
-						</content>
-					</Toolbar>
+					<Bar class="header">
+						<contentMiddle>			
+							<Image src="images/NBCU_Logo.svg"  height="70%" width="50%" />
+						</contentMiddle>
+					</Bar>
 				</customHeader>
 				<content>	
 					<Text width="20%"></Text>
@@ -159,12 +156,12 @@
 						 	minContainerCols="3"
 						 	columnsS="3">		
 							
-							<Input id="searchField" width="100%" placeholder="{i18n>inpEmpName}" submit="onSearch" class="srch">
+							<Input id="searchField" width="100%" placeholder="Enter Employee Name" submit="onSearch">
 								<layoutData>
 		  					    	<l:GridData span="L12 M12 S12"/>
 		   					 	</layoutData>
 							</Input>
-							<Button icon="sap-icon://search" text="{i18n>btnSearch}" press="onSearch">
+							<Button icon="sap-icon://search" text="Search" press="onSearch">
 								<layoutData>
 		    				  		<l:GridData span="L4 M4 S4"/>
 		   					 	</layoutData>
@@ -180,18 +177,17 @@
 					<List id="searchResult"
 						visible="false"
 						items="{/response/docs}"
+						headerText="Results"
 						growing="true"
-						growingThreshold="10"
 						mode="SingleSelectMaster"
-						noDataText="{i18n>noDataText}"
-						growingTriggerText="{i18n>growingText}"
-			
+						growingThreshold="10"
+						noDataText="No Search Results Found"
 						selectionChange="profileSelected"
 						class="sapUiTinyMarginBottom"
 						updateFinished="dataLoaded">
 						<headerToolbar>
 							<Toolbar>
-								<Title text="{i18n>titleResults}" level="H3" class="resultTitle" />
+								<Title text="Results" level="H3" />
 								<ToolbarSpacer />
 								<core:Icon id="btnFilter" 
 									visible="false" 
@@ -221,42 +217,49 @@
 					<core:Icon size="2rem" id="btnGoToTop" visible="false" class="floatingButton" src="sap-icon://back-to-top" press="goToTop" />
 				</content>
 			</Page>
-			<Page id="filterPage" showHeader="true" class="page">
-				<customHeader  >
-					<Toolbar class="headerResult">
-						<content>
-							<ToolbarSpacer />
-							<!-- To be replaced with new image file -->
+			<Page id="filterPage" showHeader="true">
+				<!--<customHeader>
+					<Bar>
+						<contentMiddle>			
+							<Image src="images/nbcu.png" />
+						</contentMiddle>
+					</Bar>
+				</customHeader>-->
+				<headerContent>
+					<Bar>
+						<contentMiddle>			
 							<Image src="images/NBCU_Logo.svg" height="70%" width="50%" />
-							<ToolbarSpacer />
-						</content>
-					</Toolbar>
-				</customHeader>
-					<subHeader >
-						<Bar class="headerResult">
+						</contentMiddle>
+					</Bar>
+				</headerContent>
+					<subHeader>
+						<Bar>
 						<contentLeft>
-							<Text text="{i18n>txtSearchingfor}" id="searchId"></Text>
+							<Text text="Searching for" id="searchId"></Text>
 						</contentLeft>
 						</Bar>
 					</subHeader>
-		
+			<subHeader>
+			</subHeader>
 				<content>
 					<VBox height="4%">
 						
-				</VBox>
+					</VBox>
 					<Toolbar class="toolbar">
-							<Bar class="toolbar bkBtn">
-					<contentLeft>
-						<Button text="{i18n>btnBack}" icon="sap-icon://nav-back" press="cancel" class="bkBtn"></Button>
+							<Bar class="toolbar">
+					<contentLeft class="toolbar">
+						<Button text="Back" icon="sap-icon://nav-back" press="cancel" class="toolbar"></Button>
 					</contentLeft>
-						<contentMiddle >			
-								<Label text ="{i18n>lblFilter}" design="Bold" class="toolbar"></Label>
+						<contentMiddle class="toolbar">			
+								<Label text ="FILTER BY" design="Bold" class="toolbar"></Label>
 						</contentMiddle>
 					</Bar>
 					
 				</Toolbar>
-		
-					<Label text="{i18n>lblGroup}" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
+				
+					<Text text=""></Text>
+				
+					<Label text="BY GROUP" design="Bold" class="sapUiLargeMarginTop sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12"
 						hSpacing="1">
@@ -279,7 +282,7 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Label text="{i18n>lblBusiness}" design="Bold" class="sapUiSmallMarginBegin filterLabelHeading" />
+					<Label text="BY BUSINESS" design="Bold" class="sapUiSmallMarginBegin filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12"
 						vSpacing="0"
@@ -301,7 +304,7 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Label text="{i18n>lblLocation}" design="Bold" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
+					<Label text="BY LOCATION" design="Bold" class="sapUiSmallMarginBegin sapUiSmallMarginTop filterLabelHeading" />
 					<l:Grid
 						defaultSpan="L12 M12 S12" 
 						hSpacing="1">
@@ -322,10 +325,10 @@
 	    					</layoutData>
 						</Button>			
 					</l:Grid>
-					<Toolbar class="toolbar">
+					<Toolbar>
 						<ToolbarSpacer />
 					<!--	<Button text="Cancel" press="cancel" width="50%" type="Reject" class="sapUiSmallMargin" />-->
-						<Button text="{i18n>btnApply}" press="updateResults" width="50%" type="Emphasized" class="sapUiSmallMargin " />
+						<Button text="Apply" press="updateResults" width="50%" type="Emphasized" class="sapUiSmallMargin" />
 						<ToolbarSpacer />
 					</Toolbar>
 				</content>

@@ -13,6 +13,20 @@
 	src: url("../fonts/Rock-SansNormal.woff2");
 }
 
+.profileContent.sapMNavItem {
+	background-color: #fff !important;
+}
+
+.profileDesignation.sapMText {
+	font-family: Rock-SansBold;
+	font-size: 20px;
+}
+
+.profileWorkCity.sapMText {
+	font-family: Rock-SansNormal;
+	font-size: 15px;
+}
+
 .floatingButton {
 	position: fixed !important;
 	bottom: 20px !important;
@@ -23,22 +37,19 @@
 
 .appTitle {
 	background-color: #3D375C !important;
-	border-bottom : none !important;
 }
 
 .appTitle > * {
 	color: white !important;
 	font-family: Rock-SansBold;
 	font-weight: bold;
-	text-shadow : none !important;
 }
 
 a.linkHome.sapMLnk.sapMLnkMaxWidth {
 	color: rgb(141, 141, 141) !important;
 	font-size: 12px !important;
-	font-family: Rock-SansBold !important;
+	font-family: verdana !important;
 	font-weight: bold !important;
-	text-shadow : none !important;
 }
 
 .results:nth-child(even) {
@@ -52,7 +63,7 @@ a.linkHome.sapMLnk.sapMLnkMaxWidth {
 .nbcuHome {
 	color: rgb(141, 141, 141) !important;
 	font-size: 28px !important;
-	font-family: Rock-SansBold !important;
+	font-family: initial !important;
 	font-weight: bold !important;
 }
 
@@ -66,84 +77,76 @@ span.copyrightLabel {
 .filterLabelHeading {
 	color: white;
 }
-.toolbar{
-	background-color: transparent;
-	box-shadow: none !important;
-	border-bottom : none !important;
-	text-shadow : none !important ;
-	font-family: Rock-SansBold;
+
+.sapMTB {
+	border: none !important;
 }
 
-
-.toolbar.sapMTB {
-	border-bottom: none !important;
-}
-
-.page.sapMNavItem, .sapUiView.sapUiXMLView {
-	background-color: #3D375C !important;
+.sapMNavItem.sapUiView.sapUiXMLView {
+	background-color: #3D375C 
 } 
-/*.searchPage{
-		background-color: white !important;
-}*/
-/*.searchPage.sapMNavItem.sapUiView.sapUiXMLView{
-	background-color: white !important;
-}*/
-.srch{
-	font-family: Rock-SansBold;
-	font-size: 20px;
-	color : white !important;
-	background-color: rgb(44,168,153) !important;
-    text-shadow : none !important;
-} 
-.srch.sapMInputBase.sapMInputBaseInner{
-	font-family: Rock-SansBold;
-	font-size: 20px;
-	color : white !important;
-	background: rgb(44,168,153) !important;
-    text-shadow : none !important;
+
+.sapMNavItem, .sapMNavItem.sapMPage {
+	background-color: #3D375C;
 }
-.srch.sapMInputBaseInner:not(.sapMInputBaseReadonlyInner):not(.sapMInputBaseStateInner):not(.sapMInputBaseDisabledInner):hover{
-	border-color:transparent !important;
-}
+
 .sapUiFormResGrid>.sapUiFormTitle {
 	color : beige !important
 } 
-
-/*.sapMBtnDefault.sapMBtnInner.sapMBtnText.sapMFocusable{
+.sapMBarContainer.sapMBarPH{
+	background-color: white
+}
+.sapMBtnDefault.sapMBtnInner.sapMBtnText.sapMFocusable{
 	background-color:#D9E0E2;
 	color:black;
-}*/
+}
 /* .sapMIBar-CTX.sapMFooter-CTX{
 	background-color: transparent;
 	border-top:"";
 } */
-
-/*.toolbar{
+#__toolbar0{
+	background-color: transparent;
+	border-top: transparent;
+	border-bottom: transparent;
+}
+.toolbar{
 	background-color: transparent;
 	box-shadow: none !important;
-	border-bottom : none !important;
-}*/
+}
 .sapUiFormResGrid.sapUiFormBackgrTranslucent>div{
 	background-color: transparent !important;
 }
 .sapUiFormTitle.sapUiFormTitleH4{
 	border: transparent;
 }
-/*.sapMBarContainer.sapMBarPH{
+.sapMBarContainer.sapMBarPH{
 	height: initial;
-}*/
+}
 .sapUiForm.sapUiFormEdit .sapUiFormElementLbl>.sapMLabel{
 	color:white;
 }
-/*.sapMPageHeader::before{
+.sapMIBar.sapMHeader-CTX{
+	background-color: white !important;
+	background : white !important;
+	height: 4.5rem;
+}
+/*header#__bar1{
+	background-color: white !important;
+	height : 4rem !important
+}
+header#__bar0{
+	background-color: white !important;
+	height : 4rem !important
+} */
+.sapMPageHeader::before{
 	border-top: 0.25rem;
-}*/
-/*.sapMPageHeader{
+}
+.sapMPageHeader{
 	border-top: 0.25rem !important;
-}*/
-/*#__button6{
+}
+#__button6{
  	height: inherit ;	
-}*/
+}
 .sapMListHdr{
 	color : white !important;
 }
@@ -182,19 +185,6 @@ span.copyrightLabel {
 .empPic.sapMImg{
 	border-radius : 50% !important;
 }
-/*.sapMIBar.sapMHeader-CTX{
-	background-color: white !important;
-	background : white !important;
-	height: 4.5rem;
-}
-.sapMBarContainer.sapMBarPH{
-	background-color: white
-}
-#__toolbar0{
-	background-color: transparent;
-	border-top: transparent;
-	border-bottom: transparent;
-}*/
 .header{
 	background-color: transparent;
 	border-top: transparent;
@@ -211,52 +201,4 @@ span.copyrightLabel {
     background-color: white !important;
     background: white !important;
     height: 4.5rem;
-}
-.headerResult{
-	background-color: transparent;
-	border-top: transparent;
-	border-bottom: transparent;
-}
-.headerResult.sapMBarContainer.sapMBarPH{
-	background-color: transparent;
-	border-top: transparent;
-	border-bottom: transparent;
-	style : none !important;
-}
-.headerResult.sapMIBar.sapMSubHeader-CTX{
-	color: white !important;
-    background-color: rgb(44,168,153) !important;
-    text-shadow : none !important;
-    	font-family: Rock-SansBold;
-}
-
-.headerResult.sapMIBar.sapMHeader-CTX {
-    background-color: white !important;
-    background: white !important;
-    height: 4.5rem;
-    text-shadow: none !important;
-    border-color : transparent !important;
-}
-
-.bkBtn.sapMIBar-CTX .sapMBtnInner{
-	background-color: transparent !important;	
-	font-family: Rock-SansBold;
-	color :white !important;
-	text-shadow : none !important;
-	border-color : transparent !important;
-	box-shadow : none !important;
-}
-
-.profileContent.sapMNavItem {
-	background-color: #fff !important;
-}
-
-.profileDesignation.sapMText {
-	font-family: Rock-SansBold;
-	font-size: 20px;
-}
-
-.profileWorkCity.sapMText {
-	font-family: Rock-SansNormal;
-	font-size: 15px;
 }

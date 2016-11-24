@@ -61,7 +61,9 @@ sap.ui.define([
 		//	oModel.loadData("mockdata/data.json");
 		//	this.getView().byId("searchResult").setModel(oModel);
 			//
-			var url = "/searchUser/solr/collection1/select?q=category:worker&wt=json&rows=10000";
+			//var url = "/searchUser/solr/collection1/select?q=category:worker&wt=json&rows=10000";
+			var url = "mockdata/data.json";
+			
 			$.ajax({
 				url: url,
 				method: "get",
@@ -81,7 +83,8 @@ sap.ui.define([
 				}
 			});
 			$.ajax({
-				url: "/filter/api/v2/taxonomy/idm_location",
+				//url: "/filter/api/v2/taxonomy/idm_location",
+				url: "mockdata/loations.json",
 				method: "get",
 				success: function(data, status, xhr) {
 					data.data.unshift({"name":"All"});
@@ -94,7 +97,8 @@ sap.ui.define([
 			});
 			
 			$.ajax({
-				url: "/filter/api/v2/taxonomy/idm_businesssegment",
+				//url: "/filter/api/v2/taxonomy/idm_businesssegment",
+				url: "mockdata/business_segments.json",
 				method: "get",
 				success: function(data, status, xhr) {
 					var okGroups = [];
@@ -152,8 +156,7 @@ sap.ui.define([
 				
 				this.getView().byId("app2").to(this.getView().byId("searchPage"));
 			} else {
-				var msg = this.getView().getModel("i18n").getProperty("msgAuth");
-				sap.m.MessageToast.show(msg, {
+				sap.m.MessageToast.show("Please check your SSO id and Password", {
 					duration: 5000
 				});
 			}
@@ -186,7 +189,7 @@ sap.ui.define([
 				MessageToast.show("Wildcards (*, ?) are not supported. Please remove wildcards and try again.");
 				return;
 			}
-			this.getView().byId("searchId").setText("Searching for  " +sQuery);
+			this.getView().byId("searchId").setText("Searching for" +sQuery);
 			var me = this;
 			var url="";
 			
@@ -301,10 +304,12 @@ sap.ui.define([
 		resetBusiness: function() {
 			this.getView().byId("businessListItem").setValue("");
 		},
+		
 		imageLoad : function(oEvent){
 			var img = oEvent.getSource();
 			img.setSrc("images/default_user.png");
 		},
+		
 		profileSelected: function(oEvent) {
 			var bindingPath = oEvent.getParameters().listItem.getBindingContext().getPath();
 			var model = oEvent.getSource().getModel();
@@ -313,13 +318,11 @@ sap.ui.define([
 	
 			this.getView().byId("profilePage").setModel(profModel);
 			this.getView().byId("app2").to(this.getView().byId("profilePage"));
-		
-			this.getView().byId("searchResult").setSelectedItem(this.getView().byId("__xmlview0--searchResult").getSelectedItem(), false);
 		},
 		
 		profileOK: function() {
 			this.getView().byId("app2").to(this.getView().byId("searchPage"));
-		
+			this.getView().byId("searchResult").setSelectedItemById("");
 		}
 	});
 });
